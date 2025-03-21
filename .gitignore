@@ -61,7 +61,10 @@ BenchmarkDotNet.Artifacts/
 project.lock.json
 project.fragment.lock.json
 artifacts/
-
+*.idea/runConfigurations/
+*.vscode
+*.idea
+*.env
 # ASP.NET Scaffolding
 ScaffoldingReadMe.txt
 
