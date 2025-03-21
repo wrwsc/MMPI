@@ -31,13 +31,17 @@
     ```bash
     pip install -r requirements.txt
     ```
+6. Запустите docker desktop и запустите:
+   ```bash
+   docker compose ud -d
+   ```
 
 ## Настройка PyCharm
 
 1. Откройте проект в **PyCharm**.
 2. Перейдите в **File > Settings > Project: MMPI > Python Interpreter**.
 3. Нажмите **Add** и выберите **Existing environment**, затем укажите путь к вашему виртуальному окружению (`venv/Scripts/python` для Windows или `venv/bin/python` для macOS/Linux).
-4. Создайте конфигурацию для запуска Django сервера (Run > Edit Configurations > Django server).
+4. Создайте конфигурацию для запуска Django сервера (Run > Edit Configurations > StartUpBackend).
 
 ## Настройка VS Code
 
