@@ -1,2 +1,4 @@
 venv
 docker-compose.yml
+.idea/runConfigurations/
+.vscode
