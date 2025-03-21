@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework_swagger',
     'rest_framework',
     'drf_yasg',
+    'dto',
 ]
 
 MIDDLEWARE = [
@@ -78,8 +79,12 @@ WSGI_APPLICATION = 'mmpi.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'MMPI',
+        'USER': 'Admin',
+        'PASSWORD': 'test_mmpi_admin',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
