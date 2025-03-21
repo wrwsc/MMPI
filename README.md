@@ -31,7 +31,7 @@
     ```bash
     pip install -r requirements.txt
     ```
-6. Запустите docker desktop и запустите:
+6. Запустите docker desktop и активируйте конфигурацию:
    ```bash
    docker compose ud -d
    ```
