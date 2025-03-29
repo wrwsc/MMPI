@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3aa7f7b6-3085-4b29-a3fe-53c69c4e39d1" name="Changes" comment="Add Dockerfile" />
+    <list default="true" id="3aa7f7b6-3085-4b29-a3fe-53c69c4e39d1" name="Changes" comment="Edit Dockerfile">
+      <change afterPath="$PROJECT_DIR$/backend/templates/empty.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/dto/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/mmpi/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/mmpi/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/mmpi/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/mmpi/urls.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -12,6 +18,14 @@
   </component>
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dockerfile" />
+        <option value="HTML File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -40,27 +54,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Django Server.MMPI.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.Docker.executor&quot;: &quot;Run&quot;,
-    &quot;Python.StartUpBackend.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.urls.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/ВладОС/PycharmProjects/MMPI/backend/docker-compose.yml&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.intellij.python.django.customization.DjangoModulesConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Django Server.MMPI.executor": "Run",
+    "Docker.Docker.executor": "Run",
+    "Python.StartUpBackend.executor": "Debug",
+    "Python.urls.executor": "Run",
+    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/ВладОС/PycharmProjects/MMPI/backend/docker-compose.yml",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.intellij.pycharm.community.ide.impl.configuration.PythonContentEntriesConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected="Docker.Docker">
+}]]></component>
+  <component name="RunManager" selected="Python.StartUpBackend">
     <configuration name="StartUpBackend" type="PythonConfigurationType" factoryName="Python">
       <module name="MMPI" />
       <option name="ENV_FILES" value="" />
@@ -118,7 +133,8 @@
       <workItem from="1743173350953" duration="89000" />
       <workItem from="1743173442396" duration="406000" />
       <workItem from="1743175729545" duration="793000" />
-      <workItem from="1743183983871" duration="1091000" />
+      <workItem from="1743183983871" duration="3819000" />
+      <workItem from="1743233489737" duration="816000" />
     </task>
     <task id="LOCAL-00001" summary="workspace change">
       <option name="closed" value="true" />
@@ -160,7 +176,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743185024963</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Edit Dockerfile">
+      <option name="closed" value="true" />
+      <created>1743185168166</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1743185168166</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -183,9 +207,10 @@
     <MESSAGE value="Delete venv, +.env" />
     <MESSAGE value="Add profiles_settings.xml" />
     <MESSAGE value="Add Dockerfile" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Dockerfile" />
+    <MESSAGE value="Edit Dockerfile" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edit Dockerfile" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/MMPI$StartUpBackend.coverage" NAME="StartUpBackend Coverage Results" MODIFIED="1743176397759" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/MMPI$StartUpBackend.coverage" NAME="StartUpBackend Coverage Results" MODIFIED="1743234228747" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
