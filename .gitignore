@@ -43,7 +43,7 @@ Generated\ Files/
 # MSTest test Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
-
+backend/venv
 # NUnit
 *.VisualState.xml
 TestResult.xml
@@ -61,13 +61,14 @@ BenchmarkDotNet.Artifacts/
 project.lock.json
 project.fragment.lock.json
 artifacts/
-
+*.idea/runConfigurations/
+*.env
 # ASP.NET Scaffolding
 ScaffoldingReadMe.txt
 
 # StyleCop
 StyleCopReport.xml
-
+.env
 # Files built by Visual Studio
 *_i.c
 *_p.c

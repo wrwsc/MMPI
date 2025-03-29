@@ -1,0 +1,6 @@
+{
+    "python.pythonPath": "venv/Scripts/python",
+    "django.debug": true,
+    "django.manageCommand": "python manage.py runserver",
+    "django.settingsModule": "mmpi.settings"
+}
