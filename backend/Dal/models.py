@@ -20,4 +20,4 @@ class UserAnswer(models.Model):
         (False, "Нет")
     ]
     for i in range(1, 567):
-        locals()[f"Вопрос {i}"] = models.CharField(max_length=3, choices=ANSWER_CHOICE, null=True)
+        locals()[f"Вопрос {i}"] = models.CharField(max_length=5, choices=ANSWER_CHOICE, null=True)
