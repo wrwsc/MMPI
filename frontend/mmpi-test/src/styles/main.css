@@ -1,0 +1,149 @@
+* {
+  margin: 0;
+}
+@font-face {
+  font-family: "Caveat";
+  src: url("../fonts/Caveat/Caveat.ttf");
+}
+
+@font-face {
+  font-family: "SF";
+  src: url("../fonts/SanFrancisco/SF-Pro-Display-Light.otf");
+}
+
+.home-container {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #80C8EE;
+  color: #333;
+  font-family: SF;
+}
+
+.home-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.home-header h1 {
+  font-size: 60px;
+  color: #fff;
+  margin: 0;
+}
+
+.home-header h2 {
+  font-family: Caveat;
+  font-size: 80px;
+  color: #143D60;
+  text-align: center;
+  margin-top: -30px;
+  margin-bottom: -65px;
+  font-weight: 400;
+  z-index: 2;
+  position: relative;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.illustration {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.choice {
+  font-size: 50px;
+  color: #fff;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.left {
+  left: 250px;
+}
+
+.right {
+  right: 250px;
+}
+
+.image-block {
+  width: 750px;
+  height: 550px;
+  margin-top: -80px;
+  z-index: 0;
+  background: url('../img/main.png') no-repeat center / cover;
+}
+
+.test-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px; 
+  margin-bottom: 30px;
+}
+
+.test-duration {
+  margin-top: 15px;
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+  margin-bottom: -22px;
+  opacity: 0.8;
+}
+
+.test-description,
+.test-instructions {
+  width: 60%;
+}
+
+.test-description h3,
+.test-instructions h3{
+  color: #143D60;
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.test-description {
+  margin-top: 15px;
+  text-align: left;
+  color: #fff;
+  font-size: 17px;
+  opacity: 0.8;
+  width: 650px;
+  
+}
+
+.test-instructions {
+  margin-top: 15px;
+  text-align: right;
+  color: #fff;
+  font-size: 17px;
+  opacity: 0.8;
+  width: 650px;
+  
+}
+
+.start-test-button {
+  display: block;
+  width: 300px;
+  height: 50px;
+  margin: 30px auto 0 auto;
+  padding: 12px 0;
+  background-color: #fff;
+  color: #143D60;
+  border: none;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.start-test-button:hover {
+  background-color: #e0e0e0;
+}
