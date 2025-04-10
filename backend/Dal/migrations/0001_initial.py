@@ -591,7 +591,7 @@ class Migration(migrations.Migration):
                 ('Вопрос 564', models.CharField(choices=[(True, 'Да'), (False, 'Нет')], max_length=3, null=True)),
                 ('Вопрос 565', models.CharField(choices=[(True, 'Да'), (False, 'Нет')], max_length=3, null=True)),
                 ('Вопрос 566', models.CharField(choices=[(True, 'Да'), (False, 'Нет')], max_length=3, null=True)),
-                ('user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='answers', to='dto.user')),
+                ('user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='answers', to='Dal.user')),
             ],
         ),
     ]
