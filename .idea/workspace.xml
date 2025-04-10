@@ -5,8 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3aa7f7b6-3085-4b29-a3fe-53c69c4e39d1" name="Changes" comment="Edit Dockerfile">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/mmpi-test/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mmpi-test/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mmpi-test/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mmpi-test/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mmpi-test/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mmpi-test/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mmpi-test/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mmpi-test/src/main.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/mmpi-test/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mmpi-test/vite.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,12 +44,12 @@
     &quot;assignee&quot;: &quot;wrwsc&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/wrwsc/MMPI.git",
-    "accountId": "34f3ad71-b074-41e4-b4ab-0b6edab45b1d"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/wrwsc/MMPI.git&quot;,
+    &quot;accountId&quot;: &quot;34f3ad71-b074-41e4-b4ab-0b6edab45b1d&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/backend/.vscode/launch.json" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -66,7 +71,7 @@
     "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "BW-1",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "C:/Users/ВладОС/PycharmProjects/MMPI",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
