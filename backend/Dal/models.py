@@ -12,6 +12,9 @@ class User(models.Model):
     birth_date = models.DateField()
     email = models.EmailField(blank=True, null=True)
 
+    def __str__(self):
+        return f"Неизвестный пользователь ({self.id})" if self.id else "Неизвестный пользователь"
+
 
 class UserAnswer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="answers", null=True)
