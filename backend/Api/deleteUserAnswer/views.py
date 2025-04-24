@@ -1,15 +1,17 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from Dal.models import UserAnswer, User
 from rest_framework.permissions import IsAuthenticated
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
-from Dal.models import User, UserAnswer
+from django.views.decorators.csrf import csrf_exempt
 
 
 class ApiDeleteUserAnswer(APIView):
     permission_classes = [IsAuthenticated]
 
+    @csrf_exempt
     @swagger_auto_schema(
         operation_description="Удалить ответ пользователя по ID и ID вопроса",
         operation_summary="Удалить конкретный ответ пользователя",
@@ -22,8 +24,10 @@ class ApiDeleteUserAnswer(APIView):
             404: openapi.Response('Пользователь или вопрос не найден')
         }
     )
-
     def delete(self, request, user_id, question_id):
+        if request.user.id != user_id:
+            return Response({"message": "Вы не можете удалять ответы другого пользователя."},
+                            status=status.HTTP_403_FORBIDDEN)
         try:
             user = User.objects.get(id=user_id)
             user_answer = UserAnswer.objects.get(user=user)
