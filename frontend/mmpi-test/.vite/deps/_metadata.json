@@ -1,0 +1,40 @@
+{
+  "hash": "168457c6",
+  "configHash": "5debd100",
+  "lockfileHash": "0aa71391",
+  "browserHash": "bf47e090",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "1ed7b177",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "3900bcb6",
+      "needsInterop": true
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.mjs",
+      "file": "react-router-dom.js",
+      "fileHash": "9d03e35a",
+      "needsInterop": false
+    },
+    "react-dom": {
+      "src": "../../node_modules/react-dom/index.js",
+      "file": "react-dom.js",
+      "fileHash": "3600a9b3",
+      "needsInterop": true
+    }
+  },
+  "chunks": {
+    "chunk-NGIGROJT": {
+      "file": "chunk-NGIGROJT.js"
+    },
+    "chunk-Q462PRL3": {
+      "file": "chunk-Q462PRL3.js"
+    }
+  }
+}
