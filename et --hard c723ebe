@@ -1,0 +1,53 @@
+[33m8fd3be3[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mKAN-4[m[33m)[m HEAD@{0}: checkout: moving from KAN-4 to main
+[33m8fd3be3[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mKAN-4[m[33m)[m HEAD@{1}: reset: moving to HEAD~1
+[33mc723ebe[m HEAD@{2}: commit: Add registration
+[33m8fd3be3[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mKAN-4[m[33m)[m HEAD@{3}: checkout: moving from main to KAN-4
+[33m8fd3be3[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mKAN-4[m[33m)[m HEAD@{4}: commit (merge): Merge remote-tracking branch 'origin/main'
+[33ma090916[m HEAD@{5}: commit: Add front .vite
+[33m8ad11ef[m HEAD@{6}: reset: moving to HEAD~1
+[33m672e61b[m HEAD@{7}: reset: moving to HEAD~1
+[33m54cc747[m HEAD@{8}: commit (merge): Merge remote-tracking branch 'origin/KAN-5'
+[33m672e61b[m HEAD@{9}: rebase (finish): returning to refs/heads/main
+[33m672e61b[m HEAD@{10}: rebase (start): checkout origin/main
+[33m8ad11ef[m HEAD@{11}: commit: Add docker-compose.yml
+[33mabfadf4[m[33m ([m[1;32mBW-1[m[33m)[m HEAD@{12}: merge BW-1: Fast-forward
+[33m94ac56c[m HEAD@{13}: checkout: moving from BW-1 to main
+[33mabfadf4[m[33m ([m[1;32mBW-1[m[33m)[m HEAD@{14}: commit (merge): Merge branch 'main' into BW-1
+[33mb9ebf60[m HEAD@{15}: commit: Add open server
+[33m7e9a0b3[m HEAD@{16}: checkout: moving from main to BW-1
+[33m94ac56c[m HEAD@{17}: commit: Add table questions
+[33mf09664a[m HEAD@{18}: commit: Add CRUD
+[33ma181449[m HEAD@{19}: commit: l
+[33m5389eab[m HEAD@{20}: checkout: moving from dto to main
+[33m1d7f12a[m[33m ([m[1;31morigin/dto[m[33m, [m[1;32mdto[m[33m)[m HEAD@{21}: commit: Update .gitignore
+[33mf86c99d[m HEAD@{22}: merge refs/heads/main: Merge made by the 'ort' strategy.
+[33m51c8890[m HEAD@{23}: merge origin/dto: Fast-forward
+[33m9be1166[m HEAD@{24}: checkout: moving from main to dto
+[33m5389eab[m HEAD@{25}: commit: Add empty page
+[33mff97ed5[m HEAD@{26}: commit: Edit Dockerfile
+[33m43cec14[m HEAD@{27}: commit: Add Dockerfile
+[33m3483468[m HEAD@{28}: commit: Add profiles_settings.xml
+[33md440a51[m HEAD@{29}: merge origin/main: Merge made by the 'ort' strategy.
+[33mf6f7c16[m HEAD@{30}: commit: Delete venv, +.env
+[33m55457d9[m HEAD@{31}: reset: moving to HEAD~1
+[33m7d3d069[m HEAD@{32}: commit: Delete venv
+[33m55457d9[m HEAD@{33}: merge origin/main: Fast-forward
+[33mb268ee2[m HEAD@{34}: commit: workspace change
+[33mdf26757[m HEAD@{35}: commit: Add settings
+[33md806ecf[m HEAD@{36}: commit: Refresh
+[33meb88716[m HEAD@{37}: commit: Remove .gitignore
+[33mec90274[m HEAD@{38}: commit: Remove idea settings
+[33me2b9416[m HEAD@{39}: merge origin/main: Merge made by the 'ort' strategy.
+[33m3ea7e83[m HEAD@{40}: commit: Add settings
+[33m306457f[m HEAD@{41}: merge origin/main: Fast-forward
+[33m9be1166[m HEAD@{42}: rebase (finish): returning to refs/heads/main
+[33m9be1166[m HEAD@{43}: rebase (start): checkout refs/heads/dto
+[33m8fc010e[m HEAD@{44}: checkout: moving from dto to main
+[33m9be1166[m HEAD@{45}: commit (merge): Merge remote-tracking branch 'origin/dto' into dto
+[33m0804bea[m HEAD@{46}: commit: Add models; New DB PostgreSql
+[33mf1b91da[m HEAD@{47}: commit: Add dto
+[33m8fc010e[m HEAD@{48}: checkout: moving from main to dto
+[33m8fc010e[m HEAD@{49}: commit: Add swagger
+[33ma8813db[m HEAD@{50}: commit: Add swagger and admin project
+[33me4ca186[m HEAD@{51}: commit: Add django
+[33m06efb40[m HEAD@{52}: clone: from https://github.com/wrwsc/MMPI.git

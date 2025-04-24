@@ -1,5 +1,5 @@
 from random import choices
-
+from django.contrib.auth.models import User as DjangoUser
 from django.db import models
 
 
@@ -8,12 +8,17 @@ class User(models.Model):
         ("Мужской", "Man"),
         ("Женский", "Woman")
     ]
+    django_user = models.OneToOneField(DjangoUser, on_delete=models.CASCADE, null=True, blank=True)
     sex = models.CharField(max_length=7, choices=SEX_CHOICE)
     birth_date = models.DateField()
     email = models.EmailField(blank=True, null=True)
 
     def __str__(self):
-        return f"Неизвестный пользователь ({self.id})" if self.id else "Неизвестный пользователь"
+        return f"Пользователь {self.django_user.username} ({self.django_user.id})"
+
+    @property
+    def user_id(self):
+        return self.django_user.id
 
 
 class UserAnswer(models.Model):

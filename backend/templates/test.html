@@ -1,0 +1,32 @@
+{% load static %}
+
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тестирование</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="centered-square">
+        <form id="test-form" action="/api/answer-post/" method="POST">
+            <h2>Тестирование</h2>
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label>Вы довольны качеством обучения?</label>
+                <div>
+                    <input type="radio" id="yes_static" name="answer_1" value="Да">
+                    <label for="yes_static">Да</label>
+                    <input type="radio" id="no_static" name="answer_1" value="Нет">
+                    <label for="no_static">Нет</label>
+                </div>
+            </div>
+
+
+            <button type="submit">Отправить ответы</button>
+        </form>
+    </div>
+    <script src="{% static 'script.js' %}"></script>
+</body>
+</html>
