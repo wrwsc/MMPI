@@ -14,6 +14,7 @@ class RegisterUserSerializer(serializers.Serializer):
         email = validated_data['email']
         if User.objects.filter(email=email).exists():
             raise ValidationError("Пользователь с таким email уже существует.")
+        django_user = DjangoUser.objects.create_user(username=email, email=email)
 
         sex = validated_data['sex']
         birth_date = validated_data['birth_date']
@@ -21,9 +22,8 @@ class RegisterUserSerializer(serializers.Serializer):
             sex=sex,
             birth_date=birth_date,
             email=email,
+            django_user=django_user
         )
-
-        django_user = DjangoUser.objects.create_user(username=email, email=email)
         dal_user.django_user = django_user
         dal_user.save()
         token, _ = Token.objects.get_or_create(user=django_user)

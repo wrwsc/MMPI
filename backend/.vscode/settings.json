@@ -1,6 +1,23 @@
 {
     "python.pythonPath": "venv/Scripts/python",
+    "python.linting.enabled": true,
+    "python.linting.flake8Enabled": true,
+    "python.linting.pylintEnabled": false,
+    "python.linting.mypyEnabled": true,
+    "python.analysis.typeCheckingMode": "basic", 
+    "python.languageServer": "Pylance",
+    
     "django.debug": true,
     "django.manageCommand": "python manage.py runserver",
-    "django.settingsModule": "mmpi.settings"
+    "django.settingsModule": "mmpi.settings",
+    
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "always"
+    },
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": [
+        "--line-length",
+        "88"
+    ],
+    "files.autoSave": "onWindowChange"
 }

@@ -4,22 +4,28 @@ from django.db import models
 
 
 class User(models.Model):
-    SEX_CHOICE= [
+    SEX_CHOICE = [
         ("Мужской", "Man"),
         ("Женский", "Woman")
     ]
-    django_user = models.OneToOneField(DjangoUser, on_delete=models.CASCADE, null=True, blank=True)
+
+    django_user = models.OneToOneField(
+        DjangoUser,
+        on_delete=models.CASCADE,
+        primary_key=True
+    )
+    user_id = models.PositiveIntegerField(editable=False, unique=True, null=False, default=0)
     sex = models.CharField(max_length=7, choices=SEX_CHOICE)
     birth_date = models.DateField()
     email = models.EmailField(blank=True, null=True)
 
     def __str__(self):
-        return f"Пользователь {self.django_user.username} ({self.django_user.id})"
+        return f"Пользователь {self.django_user.username} ({self.django_user_id})"
 
-    @property
-    def user_id(self):
-        return self.django_user.id
-
+    def save(self, *args, **kwargs):
+        if not self.user_id:
+            self.user_id = self.django_user_id
+        super().save(*args, **kwargs)
 
 class UserAnswer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="answers", null=True)
@@ -28,4 +34,4 @@ class UserAnswer(models.Model):
         (False, "Нет")
     ]
     for i in range(1, 567):
-        locals()[f"Вопрос {i}"] = models.CharField(max_length=5, choices=ANSWER_CHOICE, null=True)
+        locals()[f"Вопрос {i}"] = models.CharField(max_length=5, choices=ANSWER_CHOICE, null=True) # type: ignore

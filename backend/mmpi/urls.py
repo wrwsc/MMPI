@@ -6,10 +6,12 @@ from drf_yasg import openapi
 from django.shortcuts import render
 from Api.deleteUserAnswer.views import ApiDeleteUserAnswer
 from Api.getUserAnswers.views import ApiGetUserAnswers
+from Api.graphExportAPIView.views import GraphExportAPIView
 from Api.postUserAnswer.views import ApiPostUserAnswer
 from Api.putUserAnswer.views import ApiPutUserAnswer
 from Api.RegisterUserApi.views import RegisterUserApi
-from rest_framework.authtoken.views import obtain_auth_token
+from rest_framework.authentication import TokenAuthentication
+
 
 
 schema_view = get_schema_view(
@@ -31,6 +33,10 @@ def index_page(request):
 def test_page(request):
     return render(request, 'test.html')
 
+
+def test_results_page(request):
+    return render(request, 'test_results.html')
+
 urlpatterns = [
     path("", index_page),
     path("admin/", admin.site.urls),
@@ -42,4 +48,6 @@ urlpatterns = [
     re_path(r"^swagger(?P<format>\.json|\.yaml)$", schema_view.without_ui(cache_timeout=0), name="schema-json"),
     path('api/register/', RegisterUserApi.as_view(), name='register'),
     path('test/', test_page, name='test-page'),
+    path('api/export-graph/<int:user_id>/', GraphExportAPIView.as_view(), name='export-graph'),
+    path('test-results/', test_results_page, name='test-results-page'),
 ]
