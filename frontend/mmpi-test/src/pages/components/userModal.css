@@ -1,87 +1,178 @@
-.modal-overlay {
+@font-face{
+  font-family: Montserrat;
+  src: url(../fonts/Montserrat/Montserrat-VariableFont_wght.ttf);
+}
+
+.modal-container {
   position: fixed;
+  font-family: Montserrat;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(6px);
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  backdrop-filter: blur(5px);
+  background: rgba(0, 0, 0, 0.4);
   z-index: 1000;
 }
 
 .modal-content {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(12px);
-  border-radius: 16px;
-  padding: 2rem;
-  color: #fff;
-  width: 100%;
-  max-width: 540px;
-  margin: 0 auto;
-  margin-top: 2rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  transition: background 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Оставляем — центр по горизонтали */
+  justify-content: center; 
+  background: rgba(144, 142, 145, 0.645);
+  border-radius: 15px;
+  padding: 40px 30px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+  color: white;
+  max-width: 800px;
+  width: 90%;
+  position: relative;
+  backdrop-filter: blur(10px);
+  transition: background 0.5s ease, backdrop-filter 0.5s ease;
 }
 
-.modal-male {
-  background: rgba(20, 40, 60, 0.5); /* более насыщенный */
-}
 
 .close-btn {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 15px;
+  right: 20px;
+  font-weight:lighter;
   background: none;
-  color: white;
   border: none;
-  font-size: 1.5rem;
+  font-size: 30px;
+  color: white;
   cursor: pointer;
 }
 
-.gender-buttons {
-  display: flex;
-  gap: 1rem;
-  margin: 0.5rem 0;
+/* Центрирование текста */
+.modal-content h2,
+.modal-content label {
+  text-align: center;
 }
 
-.gender-buttons button {
-  padding: 0.5rem 1rem;
-  border: 2px solid white;
+.modal-content h2{
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.modal-content label{
+  display: block;
+  text-align: center;
+  margin-bottom: 8px;
+  font-weight: 400;
+  font-size: 16px;
+  color: white;
+}
+
+/* Центрирование формы */
+.gender-selection{
+  max-width: 550px;
+  height: 70px;
+  margin: 0 auto 40px auto;
+}
+.input-field{
+  max-width: 300px;
+  margin: 0 auto 20px auto;
+}
+.continue-btn {
+  max-width: 300px; /* 👈 ширина по макету */
+  margin: 0 auto 20px auto; /* 👈 центрирование */
+}
+
+.gender-toggle {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid white;
+  border-radius: 30px;
+  overflow: hidden;
+  width: 500px;
   background: transparent;
-  color: white;
-  border-radius: 20px;
+  margin-top: 10px;
+}
+
+.toggle-option {
+  flex: 1;
+  padding: 12px 0;
+  text-align: center;
   cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.gender-buttons .active {
-  background-color: white;
-  color: #1e3a5f;
-}
-
-.input-group {
-  margin-top: 1rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.input-group input {
-  padding: 0.6rem;
+  font-weight: 400;
+  font-size: 16px;
+  color: #ffffffa0;
+  transition: background 0.3s, color 0.3s;
+  background: transparent;
   border: none;
-  border-radius: 8px;
-  margin-top: 0.3rem;
+}
+
+.toggle-option.active.female {
+  background: #E1AAAA;
+  color: #fff;
+}
+
+.toggle-option.active.male {
+  background: #AAB9E1;
+  color: #fff;
+}
+
+.input-field label {
+  display: block;
+  text-align: center;
+  margin-bottom: 8px;
+  font-weight: 400;
+  font-size: 16px;
+  color: white; 
+}
+
+.input-field input {
+  height: 30px;
+  padding: 12px 18px;
+  border-radius: 20px;
+  border: 1px solid white;
+  background: transparent;
+  color: #C8CFD9;
+  font-size: 16px;
+  
+}
+
+.age-input{
+  width: 200px;
+}
+
+.email-input{
+  width: 420px;
+}
+
+
+.input-field input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.required-note {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 5px;
+  text-align: center;
 }
 
 .continue-btn {
-  margin-top: 1.5rem;
-  padding: 0.8rem 2rem;
-  background-color: #1e3a5f;
+  display: block;
+  margin: 30px auto 0 auto;
+  padding: 12px 30px;
+  background: #2d2d2d;
   color: white;
   border: none;
-  border-radius: 25px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 18px;
   cursor: pointer;
-  font-weight: bold;
+  transition: background 0.3s;
+  width: 1000px;
+  height: 70px;
+}
+
+.continue-btn:hover {
+  background: #252525;
 }

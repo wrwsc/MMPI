@@ -7,8 +7,15 @@ import titleImage from '../img/testing-title.png';
 
 const Home = () => {
   const navigate = useNavigate();
-  const [showModal, setShowModal] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div
@@ -44,13 +51,13 @@ const Home = () => {
       </div>
       <div className="start">
         <p className="time-note">Примерное время прохождения – 2 часа</p>
-        <button className="start-btn" onClick={() => setShowModal(true)}>
+        <button className="start-btn" onClick={openModal}>
           Начать тест
         </button>
       </div>
-      {showModal && <UserDataModal onClose={() => setShowModal(false)} />}
+      {isModalOpen && <UserDataModal onClose={closeModal} />}
     </div>
-    
+
   );
 };
 
