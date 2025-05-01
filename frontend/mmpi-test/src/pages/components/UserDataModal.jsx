@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../components/userModal.css';
 
 const UserDataModal = ({ onClose }) => {
   const [selectedGender, setSelectedGender] = useState(null);
   const [age, setAge] = useState('');
   const [email, setEmail] = useState('');
+  const [isClosing, setIsClosing] = useState(false);
 
   const handleGenderSelect = (gender) => {
     setSelectedGender(gender);
@@ -12,32 +13,53 @@ const UserDataModal = ({ onClose }) => {
 
   const handleContinue = () => {
     if (!selectedGender || !age || !email) {
-      alert('Пожалуйста, заполните все поля.');
       return;
     }
     console.log('Данные пользователя:', { selectedGender, age, email });
-    onClose();
+    handleClose(); // Плавно закрыть
   };
 
-  // Выбираем стиль фона в зависимости от пола
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      onClose(); // Закрываем после завершения анимации
+    }, 200);
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        handleClose();
+      }
+    };
+  
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
   const getBackgroundStyle = () => {
     if (selectedGender === 'Женский') {
-      return { background: 'rgba(187, 160, 153, 0.39)', backdropFilter: 'blur(10px)' };
+      return { background: 'rgba(187, 160, 153, 0.55)', backdropFilter: 'blur(10px)' };
     }
     if (selectedGender === 'Мужской') {
-      return { background: 'rgba(153, 165, 187, 0.36)', backdropFilter: 'blur(10px)' };
+      return { background: 'rgba(153, 165, 187, 0.55)', backdropFilter: 'blur(10px)' };
     }
-    return { background: 'rgba(50, 50, 50, 0.8)', backdropFilter: 'blur(10px)' }; // фон по умолчанию
+    return { background: 'rgba(157, 149, 146, 0.55)', backdropFilter: 'blur(10px)' };
   };
 
   return (
     <div className="modal-container">
-      <div className="modal-content" style={getBackgroundStyle()}>
-        <button className="close-btn" onClick={onClose}>×</button>
+      <div
+        className={`modal-content ${isClosing ? 'closing' : ''}`}
+        style={getBackgroundStyle()}
+      >
+        <button className="close-btn" onClick={handleClose}>×</button>
         <h2>ВВЕДИТЕ ВАШИ ДАННЫЕ</h2>
 
         <div className="gender-selection">
-          <label class='text-label'>УКАЖИТЕ ВАШ ПОЛ</label>
+          <label className="text-label">УКАЖИТЕ ВАШ ПОЛ</label>
           <div className="gender-toggle">
             <div
               className={`toggle-option ${selectedGender === 'Женский' ? 'active female' : ''}`}
@@ -56,8 +78,9 @@ const UserDataModal = ({ onClose }) => {
         </div>
 
         <div className="input-field">
-          <label class='text-label'>УКАЖИТЕ ВАШ ВОЗРАСТ</label>
-          <input class='age-input'
+          <label className="text-label">УКАЖИТЕ ВАШ ВОЗРАСТ</label>
+          <input
+            className="age-input"
             type="number"
             placeholder="Например: 18"
             value={age}
@@ -67,8 +90,9 @@ const UserDataModal = ({ onClose }) => {
         </div>
 
         <div className="input-field">
-          <label class='text-label'>УКАЖИТЕ ВАШ ЭЛЕКТРОННЫЙ АДРЕС</label>
-          <input class='email-input'
+          <label className="text-label">УКАЖИТЕ ВАШ ЭЛЕКТРОННЫЙ АДРЕС</label>
+          <input
+            className="email-input"
             type="email"
             placeholder="Например: mmpi@test.ru"
             value={email}
@@ -76,7 +100,6 @@ const UserDataModal = ({ onClose }) => {
           />
           <div className="required-note">Обязательное для заполнения поле</div>
         </div>
-
 
         <button className="continue-btn" onClick={handleContinue}>
           Продолжить
