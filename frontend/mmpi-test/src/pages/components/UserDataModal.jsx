@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'; 
 import '../components/userModal.css';
 
 const UserDataModal = ({ onClose }) => {
@@ -6,17 +6,60 @@ const UserDataModal = ({ onClose }) => {
   const [age, setAge] = useState('');
   const [email, setEmail] = useState('');
   const [isClosing, setIsClosing] = useState(false);
+  const [genderError, setGenderError] = useState(false);
+  const [ageError, setAgeError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
 
   const handleGenderSelect = (gender) => {
     setSelectedGender(gender);
+    setGenderError(false); // сбрасываем ошибку при изменении
+  };
+
+  const handleAgeChange = (e) => {
+    const value = e.target.value;
+    setAge(value);
+    if (value) setAgeError(false); // сбрасываем ошибку при изменении
+  };
+
+  const handleEmailChange = (e) => {
+    const value = e.target.value;
+    setEmail(value);
+    if (value) setEmailError(false); // сбрасываем ошибку при изменении
   };
 
   const handleContinue = () => {
-    if (!selectedGender || !age || !email) {
-      return;
+    let hasError = false;
+
+    // Gender
+    if (!selectedGender) {
+      setGenderError(true);
+      hasError = true;
     }
+
+    // Age
+    const numericAge = parseInt(age, 10);
+    if (!age) {
+      setAgeError("Обязательное поле");
+      hasError = true;
+    } else if (isNaN(numericAge) || numericAge < 18 || numericAge > 120) {
+      setAgeError("Возраст должен быть от 18 до 120");
+      hasError = true;
+    }
+
+    // Email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email) {
+      setEmailError("Обязательное поле");
+      hasError = true;
+    } else if (!emailRegex.test(email)) {
+      setEmailError("Введите адрес электронной почты правильно");
+      hasError = true;
+    }
+
+    if (hasError) return;
+
     console.log('Данные пользователя:', { selectedGender, age, email });
-    handleClose(); // Плавно закрыть
+    handleClose();
   };
 
   const handleClose = () => {
@@ -32,7 +75,7 @@ const UserDataModal = ({ onClose }) => {
         handleClose();
       }
     };
-  
+
     document.addEventListener('keydown', handleKeyDown);
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
@@ -60,7 +103,7 @@ const UserDataModal = ({ onClose }) => {
 
         <div className="gender-selection">
           <label className="text-label">УКАЖИТЕ ВАШ ПОЛ</label>
-          <div className="gender-toggle">
+          <div className={`gender-toggle ${genderError ? 'error-border' : ''}`}>
             <div
               className={`toggle-option ${selectedGender === 'Женский' ? 'active female' : ''}`}
               onClick={() => handleGenderSelect('Женский')}
@@ -74,31 +117,31 @@ const UserDataModal = ({ onClose }) => {
               МУЖСКОЙ
             </div>
           </div>
-          <div className="required-note">Обязательное для заполнения поле</div>
+          {genderError && <div className="error-container">Обязательное поле</div>}
         </div>
 
         <div className="input-field">
           <label className="text-label">УКАЖИТЕ ВАШ ВОЗРАСТ</label>
           <input
-            className="age-input"
+            className={`age-input ${ageError ? 'error-border' : ''}`}
             type="number"
             placeholder="Например: 18"
             value={age}
-            onChange={(e) => setAge(e.target.value)}
+            onChange={handleAgeChange}
           />
-          <div className="required-note">Обязательное для заполнения поле</div>
+          {ageError && <div className="error-container">{ageError}</div>}
         </div>
 
         <div className="input-field">
           <label className="text-label">УКАЖИТЕ ВАШ ЭЛЕКТРОННЫЙ АДРЕС</label>
           <input
-            className="email-input"
+            className={`email-input ${emailError ? 'error-border' : ''}`}
             type="email"
             placeholder="Например: mmpi@test.ru"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handleEmailChange}
           />
-          <div className="required-note">Обязательное для заполнения поле</div>
+          {emailError && <div className="error-container">{emailError}</div>}
         </div>
 
         <button className="continue-btn" onClick={handleContinue}>

@@ -101,8 +101,8 @@
 /* Центрирование формы */
 .gender-selection{
   max-width: 550px;
-  height: 70px;
-  margin: 0 auto 45px auto;
+  min-height: 70px;
+  margin: 0 auto 30px auto;
 }
 .input-field{
   max-width: 500px;
@@ -173,7 +173,7 @@
 }
 
 .age-input{
-  width: 200px;
+  width: 220px;
   text-align: center;
   color: rgba(255, 255, 255, 1);
 }
@@ -220,4 +220,29 @@
 
 .continue-btn:hover {
   background: rgb(64, 66, 70)
+}
+
+.error-border {
+  border: 2px solid #861E1E !important;
+  background-color: rgba(215, 0, 0, 0.2) !important;
+}
+
+.error-container {
+  position: absolute;
+  bottom: -20px;
+  background-color: #861E1E;
+  color: white;
+  padding: 3px 14px;
+  border-radius: 2px 2px 15px 15px;
+  font-size: 12px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.input-field,
+.gender-selection {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
