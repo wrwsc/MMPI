@@ -6,6 +6,7 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse, path
 from django.utils.html import format_html
 from Dal.models import User, UserTScore
+from Dal.utils.load_questions import load_questions
 from Logic.calculate.scoring import (
     calculate_raw_scores, apply_corrections,
     generate_graph, generate_pdf
@@ -23,9 +24,11 @@ class UserAnswerAdmin(admin.ModelAdmin):
 
     @staticmethod
     def question_with_answer(obj, i):
-        question = f"Вопрос {i}"
-        answer = getattr(obj, question)
-        return f"{question}: {answer if answer is not None else "-"}"
+        sex = getattr(obj.user, 'sex', 'Мужской')
+        questions = load_questions(sex)
+        question_text = questions[i - 1] if i <= len(questions) else "—"
+        answer = getattr(obj, f"Вопрос {i}")
+        return f"Вопрос {i} ({question_text}): {answer if answer is not None else '-'}"
 
     @staticmethod
     def get_readonly_fields(request, obj=None):
