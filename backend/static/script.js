@@ -6,9 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const email = document.getElementById("email").value;
             const sex = document.querySelector('input[name="sex"]:checked').value;
-            const age = document.getElementById("age").value;
+            const birthDate = document.getElementById("birth_date").value;
 
-            const userData = { email, sex, age };
+            const userData = { email, sex, birth_date: birthDate };
 
             try {
                 const response = await fetch("http://127.0.0.1:8000/api/register/", {
@@ -44,49 +44,71 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-exportGraphButton.addEventListener("click", async () => {
-    const userDataRaw = localStorage.getItem("user");
-    if (!userDataRaw) {
-        alert("Вы не вошли в систему. Пожалуйста, авторизуйтесь.");
-        return;
-    }
+    const testForm = document.getElementById("test-form");
+    if (testForm) {
+        testForm.addEventListener("submit", async (event) => {
+            event.preventDefault();
 
-    const user = JSON.parse(userDataRaw);
-    const token = user.token;
-    const user_id = user.user_id;
+            const userDataRaw = localStorage.getItem("user");
+            if (!userDataRaw) {
+                alert("Вы не вошли в систему. Пожалуйста, авторизуйтесь.");
+                return;
+            }
 
-    if (!token || !user_id) {
-        alert("Недопустимые данные авторизации.");
-        return;
-    }
+            const user = JSON.parse(userDataRaw);
+            const token = user.token;
+            const user_id = user.user_id;
 
-    try {
-        const response = await fetch(`http://127.0.0.1:8000/api/export-graph/${user_id}/`, {
-            method: "GET",
-            headers: {
-                "Authorization": `${token}`,
-            },
+            if (!token || !user_id) {
+                alert("Недопустимые данные авторизации.");
+                return;
+            }
+
+            const formData = new FormData(testForm);
+            const answers = [];
+
+            formData.forEach((value, key) => {
+                const match = key.match(/^answer_(\d+)$/);
+                if (match) {
+                    const question_number = 1;
+                    answers.push({
+                        user_id,
+                        question_number,
+                        answer: value,
+                    });
+                }
+            });
+
+            console.log("Подготовленные ответы:", answers);
+
+            for (const answer of answers) {
+                try {
+                    const response = await fetch(`/api/answer-post/${user_id}/`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Token ${token}`,
+                        },
+                        body: JSON.stringify(answer),
+                    });
+
+                    const responseData = await response.json();
+
+                    if (!response.ok) {
+                        console.error(`Ошибка отправки ответа ${answer.question_number}:`, responseData);
+                        alert(`Ошибка при отправке ответа на вопрос ${answer.question_number}: ${JSON.stringify(responseData)}`);
+                        return;
+                    }
+
+                    console.log(`Ответ на вопрос ${answer.question_number} успешно сохранен.`);
+                } catch (error) {
+                    console.error(`Сетевая ошибка при ответе на вопрос ${answer.question_number}:`, error);
+                    alert("Сетевая ошибка. Повторите попытку.");
+                    return;
+                }
+            }
+
+            alert("Все ответы успешно отправлены!");
         });
-
-        if (!response.ok) {
-            const responseData = await response.json();
-            alert("Ошибка: " + JSON.stringify(responseData));
-            return;
-        }
-
-        const blob = await response.blob();
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.style.display = 'none';
-        a.href = url;
-        a.download = 'test_results.pdf';
-        document.body.appendChild(a);
-        a.click();
-        window.URL.revokeObjectURL(url);
-        alert("График успешно экспортирован!");
-
-    } catch (error) {
-        console.error("Ошибка при экспорте графика:", error);
-        alert("Ошибка сети при экспорте графика.");
     }
-});})
+});

@@ -6,8 +6,13 @@ from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
 from Logic.serializatorQuery.serilizer import UserAnswerSerializer
 from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+from rest_framework.authentication import TokenAuthentication
 
+
+@method_decorator(csrf_exempt, name='dispatch')
 class ApiPostUserAnswer(APIView):
+    authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
 
     @csrf_exempt
