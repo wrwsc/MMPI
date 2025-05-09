@@ -82,7 +82,7 @@ def calculate_t_scores(corrected_scores, M_table, delta_table, sex):
 
 def generate_graph(t_scores):
     scales_order = ['L', 'F', 'K', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
-    scale_labels = ['Л', 'F', 'K', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+    scale_labels = ['L', 'F', 'K', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
 
     scores = [t_scores.get(scale, 50) for scale in scales_order]
 
@@ -90,12 +90,20 @@ def generate_graph(t_scores):
 
     fig, ax = plt.subplots(figsize=(10, 8))
 
-    ax.plot(range(len(scales_order)), scores, color='blue', linewidth=2)
+    validation_indices = list(range(3))
+    clinical_indices = list(range(3, len(scales_order)))
+
+    validation_scores = [scores[i] for i in validation_indices]
+    clinical_scores = [scores[i] for i in clinical_indices]
+
+    ax.plot(validation_indices, validation_scores, color='blue', linewidth=2)
+    ax.plot(clinical_indices, clinical_scores, color='blue', linewidth=2)
 
     ax.scatter(range(len(scales_order)), scores, color=colors, s=50, zorder=5)
 
     for i, score in enumerate(scores):
-        ax.text(i + 0.5, score + 1, str(score), ha='center', va='bottom', fontsize=10)
+        y_offset = 3 if scale_labels[i] != 'K' else 6
+        ax.text(i, score + y_offset, str(score), ha='center', va='bottom', fontsize=10)
 
     ax.set_xticks(range(len(scale_labels)))
     ax.set_xticklabels(scale_labels, fontsize=12)
