@@ -5,13 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3aa7f7b6-3085-4b29-a3fe-53c69c4e39d1" name="Changes" comment="Edit Dockerfile">
-      <change afterPath="$PROJECT_DIR$/frontend/mmpi-test/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/Dal/scaleKeys.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/Dal/tables/table.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/Dal/test/fillRandomAnswers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/Logic/calculate/scoring.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mmpi-test/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mmpi-test/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mmpi-test/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mmpi-test/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mmpi-test/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mmpi-test/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mmpi-test/src/main.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mmpi-test/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mmpi-test/vite.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/backend.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Api/RegisterUserApi/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Api/RegisterUserApi/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Api/postUserAnswer/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Api/postUserAnswer/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Dal/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Dal/migrations/0002_alter_useranswer_вопрос_1_alter_useranswer_вопрос_10_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Dal/migrations/0003_alter_user_email.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Dal/migrations/0004_user_django_user_alter_user_email.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Dal/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Api/graphExportAPIView/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Dal/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Dal/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Logic/serializatorQuery/serilizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Logic/serializatorQuery/serilizer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Logic/serializatorRegister/serializer.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Logic/serializatorRegister/serializer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/mmpi/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/mmpi/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/mmpi/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/mmpi/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/static/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/static/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,13 +48,14 @@
       <list>
         <option value="Dockerfile" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="KAN-4" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -61,27 +84,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Django Server.MMPI.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.Docker.executor&quot;: &quot;Run&quot;,
-    &quot;Python.StartUpBackend.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.urls.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/ВладОС/PycharmProjects/MMPI&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.intellij.pycharm.community.ide.impl.configuration.PythonContentEntriesConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Django Server.MMPI.executor": "Run",
+    "Docker.Docker.executor": "Run",
+    "Python.StartUpBackend.executor": "Debug",
+    "Python.urls.executor": "Run",
+    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/ВладОС/PycharmProjects/MMPI",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.intellij.pycharm.community.ide.impl.configuration.PythonContentEntriesConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Python.StartUpBackend">
     <configuration name="StartUpBackend" type="PythonConfigurationType" factoryName="Python">
       <module name="MMPI" />
@@ -116,6 +139,7 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Docker.Docker" />
       <item itemvalue="Python.StartUpBackend" />
     </list>
   </component>
@@ -139,6 +163,9 @@
       <workItem from="1743175729545" duration="793000" />
       <workItem from="1743183983871" duration="3819000" />
       <workItem from="1743233489737" duration="816000" />
+      <workItem from="1746805510114" duration="535000" />
+      <workItem from="1746806921850" duration="778000" />
+      <workItem from="1746807949803" duration="3509000" />
     </task>
     <task id="LOCAL-00001" summary="workspace change">
       <option name="closed" value="true" />
@@ -194,6 +221,9 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -215,7 +245,18 @@
     <MESSAGE value="frontend" />
     <option name="LAST_COMMIT_MESSAGE" value="frontend" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/MMPI$StartUpBackend.coverage" NAME="StartUpBackend Coverage Results" MODIFIED="1743234228747" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/MMPI$StartUpBackend.coverage" NAME="StartUpBackend Coverage Results" MODIFIED="1746811852819" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

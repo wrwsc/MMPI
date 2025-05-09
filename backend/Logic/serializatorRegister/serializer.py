@@ -8,22 +8,22 @@ from django.contrib.auth.models import User as DjangoUser
 class RegisterUserSerializer(serializers.Serializer):
     email = serializers.EmailField()
     sex = serializers.ChoiceField(choices=[("Мужской", "Мужской"), ("Женский", "Женский")])
-    birth_date = serializers.DateField()
+    age = serializers.IntegerField()
 
     def create(self, validated_data):
         email = validated_data['email']
         if User.objects.filter(email=email).exists():
             raise ValidationError("Пользователь с таким email уже существует.")
+        django_user = DjangoUser.objects.create_user(username=email, email=email)
 
         sex = validated_data['sex']
-        birth_date = validated_data['birth_date']
+        age = validated_data['age']
         dal_user = User.objects.create(
             sex=sex,
-            birth_date=birth_date,
+            age=age,
             email=email,
+            django_user=django_user
         )
-
-        django_user = DjangoUser.objects.create_user(username=email, email=email)
         dal_user.django_user = django_user
         dal_user.save()
         token, _ = Token.objects.get_or_create(user=django_user)

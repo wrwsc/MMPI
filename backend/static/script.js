@@ -6,9 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const email = document.getElementById("email").value;
             const sex = document.querySelector('input[name="sex"]:checked').value;
-            const birthDate = document.getElementById("birth_date").value;
+            const age = document.getElementById("age").value;
 
-            const userData = { email, sex, birth_date: birthDate };
+            const userData = { email, sex, age };
 
             try {
                 const response = await fetch("http://127.0.0.1:8000/api/register/", {

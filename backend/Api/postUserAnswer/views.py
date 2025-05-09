@@ -25,6 +25,7 @@ class ApiPostUserAnswer(APIView):
             return Response({"message": "Вы не можете изменять ответы другого пользователя."},
                             status=status.HTTP_403_FORBIDDEN)
         data = request.data
+
         data['user'] = request.user.id
         serializer = UserAnswerSerializer(data=request.data, context={'request': request})
         if serializer.is_valid():
