@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/main.css';
+import UserDataModal from './components/UserDataModal';
 import backgroundImage from '../img/background.png';
 import titleImage from '../img/testing-title.png';
 
 const Home = () => {
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div
@@ -41,11 +51,13 @@ const Home = () => {
       </div>
       <div className="start">
         <p className="time-note">Примерное время прохождения – 2 часа</p>
-        <button className="start-btn" onClick={() => navigate('/test')}>
+        <button className="start-btn" onClick={openModal}>
           Начать тест
         </button>
       </div>
+      {isModalOpen && <UserDataModal onClose={closeModal} />}
     </div>
+
   );
 };
 
