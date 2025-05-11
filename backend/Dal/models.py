@@ -28,6 +28,10 @@ class User(models.Model):
             self.user_id = self.django_user_id
         super().save(*args, **kwargs)
 
+    class Meta:
+        verbose_name = "Результат пользователя"
+        verbose_name_plural = "Результаты пользователей"
+
 class UserAnswer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="answers", null=True)
     ANSWER_CHOICE = [
@@ -36,6 +40,10 @@ class UserAnswer(models.Model):
     ]
     for i in range(1, 567):
         locals()[f"Вопрос {i}"] = models.CharField(max_length=5, choices=ANSWER_CHOICE, null=True) # type: ignore
+
+    class Meta:
+        verbose_name = "Вопросы и ответы"
+        verbose_name_plural = "Вопросы и ответы"
 
 
 class UserTScore(models.Model):
