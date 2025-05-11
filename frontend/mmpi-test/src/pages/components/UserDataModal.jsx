@@ -41,8 +41,11 @@ const UserDataModal = ({ onClose }) => {
     if (!age) {
       setAgeError("Обязательное поле");
       hasError = true;
-    } else if (isNaN(numericAge) || numericAge < 18 || numericAge > 120) {
-      setAgeError("Возраст должен быть от 18 до 120");
+    } else if (isNaN(numericAge) || numericAge < 18) {
+      setAgeError("Возраст должен быть от 18 лет");
+      hasError = true;
+    } else if (numericAge > 120) {
+      setAgeError("Введите корректный возраст");
       hasError = true;
     }
 
