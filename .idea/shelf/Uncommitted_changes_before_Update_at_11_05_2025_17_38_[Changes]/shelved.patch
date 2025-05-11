@@ -1,0 +1,37 @@
+Index: .idea/dictionaries/VladOC.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/dictionaries/VladOC.xml b/.idea/dictionaries/VladOC.xml
+new file mode 100644
+--- /dev/null	(date 1746829217854)
++++ b/.idea/dictionaries/VladOC.xml	(date 1746829217854)
+@@ -0,0 +1,7 @@
++<component name="ProjectDictionaryState">
++  <dictionary name="VladOC">
++    <words>
++      <w>административная</w>
++    </words>
++  </dictionary>
++</component>
+\ No newline at end of file
+Index: .idea/dictionaries/default_user.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/dictionaries/default_user.xml b/.idea/dictionaries/default_user.xml
+new file mode 100644
+--- /dev/null	(date 1746829222530)
++++ b/.idea/dictionaries/default_user.xml	(date 1746829222530)
+@@ -0,0 +1,8 @@
++<component name="ProjectDictionaryState">
++  <dictionary name="default.user">
++    <words>
++      <w>панель</w>
++      <w>тестирования</w>
++    </words>
++  </dictionary>
++</component>
+\ No newline at end of file
