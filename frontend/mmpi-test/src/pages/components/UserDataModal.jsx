@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'; 
+import React, { useState, useEffect } from 'react';
 import '../components/userModal.css';
 
 const UserDataModal = ({ onClose }) => {
@@ -28,66 +28,71 @@ const UserDataModal = ({ onClose }) => {
   };
 
   const handleContinue = async () => {
-  let hasError = false;
+    let hasError = false;
 
-  const numericAge = parseInt(age, 10);
+    const numericAge = parseInt(age, 10);
 
-  if (!selectedGender) {
-    setGenderError(true);
-    hasError = true;
-  }
-
-  if (!age) {
-    setAgeError("Обязательное поле");
-    hasError = true;
-  } else if (isNaN(numericAge) || numericAge < 18) {
-    setAgeError("Возраст должен быть от 18 лет");
-    hasError = true;
-  } else if (numericAge > 120) {
-    setAgeError("Введите корректный возраст");
-    hasError = true;
-  }
-
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!email) {
-    setEmailError("Обязательное поле");
-    hasError = true;
-  } else if (!emailRegex.test(email)) {
-    setEmailError("Введите адрес электронной почты правильно");
-    hasError = true;
-  }
-
-  if (hasError) return;
-
-  try {
-    const response = await fetch('http://127.0.0.1:8000/api/register/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        // Удалите строку X-CSRF, если не используете Django с шаблонами
-      },
-      body: JSON.stringify({
-        email: email,
-        sex: selectedGender,
-        age: numericAge
-      }),
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      console.log('Регистрация успешна:', data);
-      handleClose();
-      // Здесь можно делать редирект или передать дальше ID пользователя
-    } else {
-      const errorData = await response.json();
-      console.error('Ошибка регистрации:', errorData);
-      alert("Ошибка регистрации: " + (errorData?.detail || 'Попробуйте снова.'));
+    if (!selectedGender) {
+      setGenderError(true);
+      hasError = true;
     }
-  } catch (error) {
-    console.error('Ошибка при отправке запроса:', error);
-    alert("Ошибка соединения с сервером.");
-  }
-};
+
+    if (!age) {
+      setAgeError("Обязательное поле");
+      hasError = true;
+    } else if (isNaN(numericAge) || numericAge < 18) {
+      setAgeError("Возраст должен быть от 18 лет");
+      hasError = true;
+    } else if (numericAge > 120) {
+      setAgeError("Введите корректный возраст");
+      hasError = true;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email) {
+      setEmailError("Обязательное поле");
+      hasError = true;
+    } else if (!emailRegex.test(email)) {
+      setEmailError("Введите адрес электронной почты правильно");
+      hasError = true;
+    }
+
+    if (hasError) return;
+
+    try {
+      const response = await fetch('http://127.0.0.1:8000/api/register/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          // Удалите строку X-CSRF, если не используете Django с шаблонами
+        },
+        body: JSON.stringify({
+          email: email,
+          sex: selectedGender,
+          age: numericAge
+        }),
+      });
+
+      if (response.ok) {
+  const data = await response.json();
+  console.log('Регистрация успешна:', data);
+
+  // Сохраняем user_id и token
+  localStorage.setItem('user_id', data.user_id); // или data.id, в зависимости от backend
+  localStorage.setItem('auth_token', data.token); // важно, auth_token
+
+
+  handleClose();
+
+  // Переход на страницу теста
+  window.location.href = '/test'; // при использовании React Router — лучше через useNavigate
+}
+
+    } catch (error) {
+      console.error('Ошибка при отправке запроса:', error);
+      alert("Ошибка соединения с сервером.");
+    }
+  };
 
 
   const handleClose = () => {

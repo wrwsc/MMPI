@@ -8,7 +8,7 @@ const Test = ({ gender = 'Мужской' }) => {
   const [questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState([]);
-
+  
   useEffect(() => {
     const filePath = gender === 'Женский' ? womansQuestions : mansQuestions;
     fetch(filePath)
@@ -19,10 +19,42 @@ const Test = ({ gender = 'Мужской' }) => {
       });
   }, [gender]);
 
-  const handleAnswer = (answer) => {
-    setAnswers(prev => [...prev, answer]);
-    setCurrentIndex(prev => prev + 1);
-  };
+  const handleAnswer = async (answer) => {
+  const userId = localStorage.getItem('user_id');
+  const token = localStorage.getItem('auth_token');
+  const questionNumber = currentIndex + 1;
+
+  // Отправка на бэкенд
+  fetch(`http://127.0.0.1:8000/api/answer-post/${userId}/`, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Token ${token}`,
+  },
+  body: JSON.stringify({
+    user_id: parseInt(userId),
+    question_number: questionNumber,
+    answer: answer,
+  }),
+})
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log("Ответ успешно отправлен:", data);
+  })
+  .catch(error => {
+    console.error("Ошибка при отправке ответа:", error);
+  });
+
+  // Обновляем локальное состояние
+  setAnswers(prev => [...prev, answer]);
+  setCurrentIndex(prev => prev + 1);
+};
+
 
   if (currentIndex >= questions.length) {
     return <div className="test-container">Спасибо за прохождение теста!</div>;
