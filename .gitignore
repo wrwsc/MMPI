@@ -399,3 +399,11 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+backend/.idea/workspace.xml
+backend/.venv/Lib
+backend/.venv/Lib/site-packages/asgiref/__init__.py
+backend/.venv/Scripts/activate
+backend/.venv/Scripts/Activate.ps1
+backend/.venv/pyvenv.cfg
+backend/.venv/Scripts
+backend/.venv/share/man/man1/ttx.1
