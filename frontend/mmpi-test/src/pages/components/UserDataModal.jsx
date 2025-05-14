@@ -75,17 +75,20 @@ const UserDataModal = ({ onClose }) => {
 
       if (response.ok) {
   const data = await response.json();
+  
   console.log('Регистрация успешна:', data);
 
-  // Сохраняем user_id и token
-  localStorage.setItem('user_id', data.user_id); // или data.id, в зависимости от backend
-  localStorage.setItem('auth_token', data.token); // важно, auth_token
+  localStorage.setItem('user_id', data.user_id);
+localStorage.setItem('auth_token', data.token);
+localStorage.setItem('gender', selectedGender);
 
+handleClose();
 
-  handleClose();
+// небольшая задержка, чтобы гарантировать сохранение localStorage
+setTimeout(() => {
+  window.location.href = '/test';
+}, 100); // 100 мс обычно достаточно
 
-  // Переход на страницу теста
-  window.location.href = '/test'; // при использовании React Router — лучше через useNavigate
 }
 
     } catch (error) {
