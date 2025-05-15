@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'; 
+import React, { useState, useEffect } from 'react';
 import '../components/userModal.css';
 
 const UserDataModal = ({ onClose }) => {
@@ -27,17 +27,16 @@ const UserDataModal = ({ onClose }) => {
     if (value) setEmailError(false); // сбрасываем ошибку при изменении
   };
 
-  const handleContinue = () => {
+  const handleContinue = async () => {
     let hasError = false;
 
-    // Gender
+    const numericAge = parseInt(age, 10);
+
     if (!selectedGender) {
       setGenderError(true);
       hasError = true;
     }
 
-    // Age
-    const numericAge = parseInt(age, 10);
     if (!age) {
       setAgeError("Обязательное поле");
       hasError = true;
@@ -49,7 +48,6 @@ const UserDataModal = ({ onClose }) => {
       hasError = true;
     }
 
-    // Email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email) {
       setEmailError("Обязательное поле");
@@ -61,9 +59,44 @@ const UserDataModal = ({ onClose }) => {
 
     if (hasError) return;
 
-    console.log('Данные пользователя:', { selectedGender, age, email });
-    handleClose();
+    try {
+      const response = await fetch('http://127.0.0.1:8000/api/register/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          // Удалите строку X-CSRF, если не используете Django с шаблонами
+        },
+        body: JSON.stringify({
+          email: email,
+          sex: selectedGender,
+          age: numericAge
+        }),
+      });
+
+      if (response.ok) {
+  const data = await response.json();
+  
+  console.log('Регистрация успешна:', data);
+
+  localStorage.setItem('user_id', data.user_id);
+localStorage.setItem('auth_token', data.token);
+localStorage.setItem('gender', selectedGender);
+
+handleClose();
+
+// небольшая задержка, чтобы гарантировать сохранение localStorage
+setTimeout(() => {
+  window.location.href = '/test';
+}, 100); // 100 мс обычно достаточно
+
+}
+
+    } catch (error) {
+      console.error('Ошибка при отправке запроса:', error);
+      alert("Ошибка соединения с сервером.");
+    }
   };
+
 
   const handleClose = () => {
     setIsClosing(true);

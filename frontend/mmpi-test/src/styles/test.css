@@ -1,0 +1,135 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: Montserrat;
+}
+@font-face{
+  font-family: Montserrat;
+  src: url(../fonts/Montserrat/Montserrat-VariableFont_wght.ttf);
+}
+
+.test-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden; /* важно для виньетки */
+}
+
+/* Виньетка */
+.test-container::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0) 70%,
+    rgba(137, 137, 137, 0.5) 100%
+  );
+  z-index: 1;
+  pointer-events: none; 
+}
+
+/* Контент поверх виньетки */
+.question-box, .buttons, .progress-bar-background {
+  position: relative;
+  z-index: 2;
+}
+
+.progress-text{
+  color: #808080;
+  font-weight: 500;
+  font-size: 16px;
+}
+.progress-wrapper {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 933.9px;
+  height: 44px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.progress-bar-background {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 933.9px; /* 566 * 1.65 */
+  height: 28px;
+  background-color: rgba(255, 255, 255, 0.544);
+  border-radius: 15px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-bar-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  background-color: #609F68;
+  z-index: 1;
+  transition: width 0.3s ease;
+}
+
+.progress-bar-text {
+  z-index: 2;
+  color: white;
+  font-weight: 600;
+  font-size: 18px;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
+}
+.question-box {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 25px;
+  width: 700px;
+  height: 200px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  box-shadow:0px 0px 15px 5px #b9b0b0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttons {
+  display: flex;
+  gap: 40px;
+}
+
+.btn {
+  font-size: 20px;
+  font-weight: 500;
+  padding:20px 55px;
+  border: none;
+  width: 150px;
+  border-radius: 15px;
+  cursor: pointer;
+  box-shadow:0px 0px 15px 5px #b9b0b0;
+}
+
+.btn.yes {
+  background-color: #E8C3B1;
+  border:1px solid #CCAB9A ;
+}
+
+.btn.no {
+  background-color: #B5D1E7;
+  border:1px solid #98ACBC ;
+}
