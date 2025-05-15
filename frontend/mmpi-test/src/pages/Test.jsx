@@ -132,6 +132,7 @@ const Test = () => {
       }}
     >
       <div className="progress-wrapper">
+      <p className='progress-text'>Прогресс</p>
         <div className="progress-bar-background">
           <div className="progress-bar-fill" style={{ width: `${(currentIndex + 1) * 1.65}px` }}></div>
           <div className="progress-bar-text">{currentIndex + 1}/{questions.length}</div>
