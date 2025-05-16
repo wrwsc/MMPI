@@ -12,7 +12,7 @@ from Api.putUserAnswer.views import ApiPutUserAnswer
 from Api.RegisterUserApi.views import RegisterUserApi
 from rest_framework.authentication import TokenAuthentication
 from Api.resetUserAnswers.views import ApiResetUserAnswers
-
+from Api.testStatusAnswer.views import ApiTestStatus
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -51,4 +51,5 @@ urlpatterns = [
     path('api/export-graph/<int:user_id>/', GraphExportAPIView.as_view(), name='export-graph'),
     path('test-results/', test_results_page, name='test-results-page'),
     path('api/answer-reset/<int:user_id>/', ApiResetUserAnswers.as_view(), name='reset-user-answers'),
+    path('api/test-status/<int:user_id>/', ApiTestStatus.as_view(), name='test-status'),
 ]
