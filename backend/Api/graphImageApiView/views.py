@@ -5,6 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
 from django.http import HttpResponse
 from Dal.models import User
+from Logic.calculate.saveTScores import save_user_t_scores
 from Logic.calculate.scoring import (
     has_completed_all_questions,
     calculate_raw_scores,
@@ -50,6 +51,15 @@ class GraphImageAPIView(APIView):
         raw_scores = calculate_raw_scores(target_user)
         corrected_scores = apply_corrections(raw_scores)
         t_scores = calculate_t_scores(corrected_scores, M_table, delta_table, target_user.sex)
+
+        original_t_value = request.query_params.get("original_T", None)
+        if original_t_value is not None:
+            try:
+                original_t_value = float(original_t_value)
+            except ValueError:
+                return Response({"message": "Неверное значение для original_T"}, status=400)
+
+        save_user_t_scores(target_user, t_scores, raw_scores, original_t_value)
 
         cache_key = get_redis_key(target_user.user_id, t_scores)
         cached_png = redis_client.get(cache_key)

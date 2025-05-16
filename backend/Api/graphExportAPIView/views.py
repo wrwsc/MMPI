@@ -1,21 +1,19 @@
-from Dal.models import User, UserTScore
+from Dal.models import User
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from Dal.tables.table import M_table, delta_table
+from Logic.calculate.saveTScores import save_user_t_scores
 from Logic.calculate.scoring import (
     calculate_t_scores, calculate_raw_scores,
     apply_corrections, generate_graph, generate_pdf, has_completed_all_questions
 )
-from django.db import transaction
 from rest_framework.exceptions import AuthenticationFailed
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
 from django.http import HttpResponse
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
-from django.utils.decorators import method_decorator
-from django.views.decorators.csrf import csrf_exempt
 from rest_framework.exceptions import AuthenticationFailed
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
@@ -64,37 +62,7 @@ class GraphExportAPIView(APIView):
             except ValueError:
                 return Response({"message": "Неверное значение для original_T"}, status=status.HTTP_400_BAD_REQUEST)
 
-        with transaction.atomic():
-            for scale, t in t_scores.items():
-                try:
-                    M_value = M_table[target_user.sex][scale]
-                    delta_value = delta_table[target_user.sex][scale]
-
-                    tscore_obj, created = UserTScore.objects.update_or_create(
-                        user=target_user,
-                        scale=scale,
-                        defaults={
-                            'M': M_value,
-                            'delta': delta_value,
-                            'T': float(t)
-                        }
-                    )
-
-                    if created:
-                        if original_t_value is not None:
-                            tscore_obj.original_T = original_t_value
-                        else:
-                            user_raw_score = raw_scores.get(scale, 0)
-                            tscore_obj.original_T = 50 + 10 * (user_raw_score - M_value) / delta_value
-
-                    if tscore_obj.original_M is None:
-                        tscore_obj.original_M = M_value
-                    if tscore_obj.original_delta is None:
-                        tscore_obj.original_delta = delta_value
-
-
-                except KeyError:
-                    print(f"Ошибка: отсутствуют значения для шкалы {scale} в таблицах для {target_user.sex} пола.")
+        save_user_t_scores(target_user, t_scores, raw_scores, original_t_value)
 
         graph_file = generate_graph(t_scores)
         pdf_file = generate_pdf(graph_file, target_user)
