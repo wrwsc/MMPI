@@ -9,6 +9,7 @@ from Api.continueTest.views import ApiContinueTest
 from Api.deleteUserAnswer.views import ApiDeleteUserAnswer
 from Api.getUserAnswers.views import ApiGetUserAnswers
 from Api.graphExportAPIView.views import GraphExportAPIView
+from Api.graphImageApiView.views import GraphImageAPIView
 from Api.postUserAnswer.views import ApiPostUserAnswer
 from Api.putUserAnswer.views import ApiPutUserAnswer
 from Api.RegisterUserApi.views import RegisterUserApi
@@ -55,4 +56,5 @@ urlpatterns = [
     path('api/answer-reset/<int:user_id>/', ApiResetUserAnswers.as_view(), name='reset-user-answers'),
     path('api/test-status/<int:user_id>/', ApiTestStatus.as_view(), name='test-status'),
     path('api/test-continue/<int:user_id>/', ApiContinueTest.as_view(), name='test-continue'),
+    path('graph/image/<int:user_id>/', GraphImageAPIView.as_view(), name='graph-image'),
 ]

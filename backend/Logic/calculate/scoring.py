@@ -1,3 +1,5 @@
+import hashlib
+import json
 from Dal.models import UserAnswer
 from Dal.scaleKeys import SCALE_KEYS
 import matplotlib.pyplot as plt
@@ -5,8 +7,12 @@ import matplotlib.ticker as ticker
 import io
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
-from django.http import JsonResponse, HttpResponse
 from reportlab.lib.utils import ImageReader
+import os
+from django.conf import settings
+import redis
+
+redis_client = redis.Redis(host='127.0.0.1', port=6379, db=0)
 
 
 def has_completed_all_questions(user):
@@ -85,7 +91,6 @@ def generate_graph(t_scores):
     scale_labels = ['L', 'F', 'K', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
 
     scores = [t_scores.get(scale, 50) for scale in scales_order]
-
     colors = ['green' if 30 <= score <= 70 else 'red' for score in scores]
 
     fig, ax = plt.subplots(figsize=(10, 8))
@@ -102,14 +107,22 @@ def generate_graph(t_scores):
     ax.scatter(range(len(scales_order)), scores, color=colors, s=50, zorder=5)
 
     for i, score in enumerate(scores):
-        y_offset = 3 if scale_labels[i] != 'K' else 6
-        ax.text(i, score + y_offset, str(score), ha='center', va='bottom', fontsize=10)
+        x = i
+        y = score
+        y_offset = 8
+
+        ax.text(
+            x, y + y_offset, str(score),
+            ha='center', va='bottom',
+            fontsize=10,
+            bbox=dict(facecolor='white', edgecolor='none', boxstyle='round,pad=0.3')
+        )
 
     ax.set_xticks(range(len(scale_labels)))
     ax.set_xticklabels(scale_labels, fontsize=12)
 
     max_score = max(scores)
-    ylim_top = max(120, max_score + 5)
+    ylim_top = max(120, max_score + 15)
     ax.set_ylim(20, ylim_top)
 
     ax.set_yticks(range(20, int(ylim_top) + 5, 5))
@@ -133,8 +146,6 @@ def generate_graph(t_scores):
     return graph_file
 
 
-
-
 def generate_pdf(graph_file, user):
     buffer = io.BytesIO()
     c = canvas.Canvas(buffer, pagesize=A4)
@@ -143,3 +154,9 @@ def generate_pdf(graph_file, user):
     c.save()
     buffer.seek(0)
     return buffer
+
+
+def get_redis_key(user_id, t_scores):
+    scores_json = json.dumps(t_scores, sort_keys=True)
+    scores_hash = hashlib.md5(scores_json.encode('utf-8')).hexdigest()
+    return f"mmpi:graph:{user_id}:{scores_hash}"
