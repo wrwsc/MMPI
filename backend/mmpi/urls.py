@@ -11,7 +11,7 @@ from Api.postUserAnswer.views import ApiPostUserAnswer
 from Api.putUserAnswer.views import ApiPutUserAnswer
 from Api.RegisterUserApi.views import RegisterUserApi
 from rest_framework.authentication import TokenAuthentication
-
+from Api.resetUserAnswers.views import ApiResetUserAnswers
 
 
 schema_view = get_schema_view(
@@ -50,4 +50,5 @@ urlpatterns = [
     path('test/', test_page, name='test-page'),
     path('api/export-graph/<int:user_id>/', GraphExportAPIView.as_view(), name='export-graph'),
     path('test-results/', test_results_page, name='test-results-page'),
+    path('api/answer-reset/<int:user_id>/', ApiResetUserAnswers.as_view(), name='reset-user-answers'),
 ]
