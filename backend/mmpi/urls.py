@@ -4,6 +4,8 @@ from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from django.shortcuts import render
+
+from Api.continueTest.views import ApiContinueTest
 from Api.deleteUserAnswer.views import ApiDeleteUserAnswer
 from Api.getUserAnswers.views import ApiGetUserAnswers
 from Api.graphExportAPIView.views import GraphExportAPIView
@@ -52,4 +54,5 @@ urlpatterns = [
     path('test-results/', test_results_page, name='test-results-page'),
     path('api/answer-reset/<int:user_id>/', ApiResetUserAnswers.as_view(), name='reset-user-answers'),
     path('api/test-status/<int:user_id>/', ApiTestStatus.as_view(), name='test-status'),
+    path('api/test-continue/<int:user_id>/', ApiContinueTest.as_view(), name='test-continue'),
 ]
