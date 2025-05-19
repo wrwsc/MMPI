@@ -1,20 +1,64 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import '../styles/results.css';
+import CheckIcon from '../img/check-icon.png';
+import ClinicalScalesImage from '../img/clinical-scales.png';
+import EvaluativeScalesImage from '../img/evaluative-scales.png';
 
-const Results = () => {
-  const location = useLocation();
-  const { answers } = location.state || {}; // Получаем данные из состояния
-
+const Result = () => {
   return (
-    <div className="results-container">
-      <h2>Ваши результаты:</h2>
-      <ul>
-        {answers && answers.map((answer, index) => (
-          <li key={index}>Вопрос {index + 1}: {answer}</li>
-        ))}
-      </ul>
+    <div className="result-container">
+      <div className="result-header">
+        <img src={CheckIcon} alt="Успех" className="result-check-icon" />
+        <h1 className="result-title">Поздравляем с успешным<br />прохождением тестирования!</h1>
+      </div>
+
+      <div className="result-buttons">
+        <div className="button-with-note">
+          <button className="result-btn save-button">Сохранить результат</button>
+          <p className="result-note">Результат сохранится в формате PDF на ваше устройство</p>
+        </div>
+        <div className="button-with-note">
+          <button className="result-btn send-button">Отправить результат</button>
+          <p className="result-note">Результат будет отправлен на электронную почту</p>
+        </div>
+      </div>
+      <h3 className="result-subtitle">Ниже вы можете увидеть график с результатами</h3>
+      <div className="placeholder">[ГРАФИК]</div>
+      <div className="placeholder">[ТАБЛИЦА]</div>
+
+      <p className="result-description">
+        Перед вами результаты по 10 основным шкалам. Красным отмечены шкалы, которые выходят за пределы коридора нормы (норма от 30T - до 70T).<br /><br />
+        В узком коридоре нормы — в пределах 46 — 55 Т — колебания профиля трудно интерпретируемые, так как они не выявляют достаточно выраженных индивидуально-личностных свойств и характерны для полностью сбалансированной личности.<br /><br />
+        В широком коридоре нормы (от 30 до 70 Т) в профиле нормы каждой тенденции противопоставлена противоположная по направленности «антитенденция», а чувства и поведение подчинены контролю сознания (или эмоции настолько умеренны, что минимальный контроль над ними оказывается вполне достаточным).<br /><br />
+        Повышения, колеблющиеся в пределах 56 — 66 Т, выявляют те ведущие тенденции, которые определяют характерологические особенности индивида.<br /><br />
+        Более высокие показатели разных базисных шкал (67-75 Т) выделяют те акцентуированные (сильно выраженные) черты, которые временами затрудняют социально-психологическую адаптацию человека.<br /><br />
+        Показатели выше 75 Т свидетельствуют о нарушенной адаптации и об отклонении состояния индивида от нормального. Это могут быть психопатические черты характера, состояние стресса, вызванное экстремальной ситуацией, невротические расстройства и, наконец, психопатология, о наличии которой может судить только патопсихолог или психиатр по совокупности данных психодиагностического, экспериментально-психологического и клинического исследования.
+      </p>
+
+      <h3 className="result-subtitle">Ниже вы можете ознакомиться с описанием основных шкал</h3>
+
+      <h4 className="scale-section-title">Клинические шкалы и их значения</h4>
+      <img src={ClinicalScalesImage} alt="Клинические шкалы" className="result-scale-image" />
+
+      <h4 className="scale-section-title">Оценочные шкалы и их значения</h4>
+      <img src={EvaluativeScalesImage} alt="Оценочные шкалы" className="result-scale-image" />
+
+      <p className="result-formula">
+        Баллы рассчитывались по следующей формуле:<br />
+        <strong>T = 50 + 10 × (X - M) / σ</strong>, где:<br />
+        X — "сырой" балл испытуемого по шкале<br />
+        M — среднее значение по нормативной выборке<br />
+        σ — стандартное отклонение по нормативной выборке<br /><br />
+        Пример:<br />
+        Допустим, по шкале 2 испытуемый набрал 25 сырых баллов. Подставляя в формулу, получаем:<br />
+        <strong>T = 50 + 10 × (25 - 18.9) / 5 = 62.2</strong> — данный результат соответствует норме.
+      </p>
+
+      <p className="result-footer">
+        Результаты тестирования могут показать наличие проблем, но должны интерпретироваться исключительно специалистом.
+      </p>
     </div>
   );
 };
 
-export default Results;
+export default Result;

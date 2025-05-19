@@ -91,7 +91,6 @@ const Test = () => {
         throw new Error(`Ошибка ответа: ${response.status}`);
       }
 
-      const data = await response.json();
       console.log(`[INFO] Ответ на вопрос ${questionNumber} успешно отправлен`);
 
       const newAnswers = [...answers, answer];
@@ -108,7 +107,7 @@ const Test = () => {
     } catch (error) {
       console.error('[ERROR] Не удалось отправить ответ:', error);
     } finally {
-      setTimeout(() => setButtonsDisabled(false), 300);
+      setTimeout(() => setButtonsDisabled(false), 100);
     }
   };
 
