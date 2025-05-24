@@ -1,0 +1,27 @@
+/* styles/notification.css */
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(166, 79, 79, 0.9);
+  color: #2d2d2d;
+  padding: 10px 15px;
+  border-radius: 8px;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.notification-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.notification button {
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+}

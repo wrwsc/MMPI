@@ -1,21 +1,34 @@
 import React, { useState } from 'react';
-import {  } from 'react-router-dom';
+import { } from 'react-router-dom';
 import '../styles/main.css';
+import { useNavigate } from 'react-router-dom';
 import UserDataModal from './components/UserDataModal';
 import backgroundImage from '../img/background.png';
 import titleImage from '../img/testing-title.png';
 
-const Home = () => {
-
+const Home = ({ showError }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [showHint1, setShowHint1] = useState(false);
+  const [showHint2, setShowHint2] = useState(false);
+  const navigate = useNavigate();
   const openModal = () => {
-    setIsModalOpen(true);
+    try {
+      setIsModalOpen(true);
+    } catch (error) {
+      showError(error);
+    }
   };
+  const continueTest = () => {
+    const userId = localStorage.getItem('user_id');
+    const token = localStorage.getItem('auth_token');
 
-  const closeModal = () => {
-    setIsModalOpen(false);
+    if (userId && token) {
+      navigate('/test');
+    } else {
+      showError('Сначала начните тест!');
+    }
   };
+  const closeModal = () => setIsModalOpen(false);
 
   return (
     <div
@@ -55,15 +68,49 @@ const Home = () => {
         </p>
 
       </div>
+
       <div className="start">
-        <p className="time-note">Примерное время прохождения – 2 часа</p>
-        <button className="start-btn" onClick={openModal}>
-          Начать тест
-        </button>
+  <p className="time-note">Примерное время прохождения – 2 часа</p>
+
+  <div className="button-with-hint">
+    <button className="start-btn" onClick={openModal}>
+      Начать тест
+    </button>
+    <div
+      className="hint-icon"
+      onMouseEnter={() => setShowHint1(true)}
+      onMouseLeave={() => setShowHint1(false)}
+    >
+      ?
+      {showHint1 && (
+        <div className="hint-text">
+          Прогресс будет сброшен
+        </div>
+      )}
+    </div>
+  </div>
+
+  <div className="button-with-hint">
+  <button className="continue-test-btn" onClick={continueTest}>
+    Продолжить тестирование
+  </button>
+  <div
+    className="hint-icon"
+    onMouseEnter={() => setShowHint2(true)}
+    onMouseLeave={() => setShowHint2(false)}
+  >
+    ?
+    {showHint2 && (
+      <div className="hint-text">
+        Вы вернётесь к незавершённым вопросам или результатам тестирования
       </div>
+    )}
+  </div>
+</div>
+</div>
+
       {isModalOpen && <UserDataModal onClose={closeModal} />}
     </div>
-
   );
 };
 

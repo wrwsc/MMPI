@@ -5,33 +5,30 @@ import mansQuestions from '../data/mans.txt';
 import womansQuestions from '../data/womans.txt';
 import backgroundImage from '../img/test-page.png';
 
-const Test = () => {
+const Test = ({ showError }) => {
   const [questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [answers, setAnswers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [buttonsDisabled, setButtonsDisabled] = useState(false);
-  const [gender, setGender] = useState(null); // ключевое изменение
+  const [gender, setGender] = useState(null);
 
   const navigate = useNavigate();
   const userId = localStorage.getItem('user_id');
   const token = localStorage.getItem('auth_token');
 
-  // Загружаем пол из localStorage при инициализации
   useEffect(() => {
     const storedGender = localStorage.getItem('gender');
     if (storedGender === 'Мужской' || storedGender === 'Женский') {
       setGender(storedGender);
     } else {
-      setGender('Мужской'); // по умолчанию
+      setGender('Мужской');
     }
   }, []);
 
-  // Загружаем вопросы и данные пользователя только после определения пола
   useEffect(() => {
-    if (!gender) return;
+    if (!gender || !userId || !token) return;
 
-    console.log('[INFO] Открытие страницы теста с полом:', gender);
+    let isMounted = true;
 
     const filePath = gender === 'Женский' ? womansQuestions : mansQuestions;
 
@@ -39,39 +36,59 @@ const Test = () => {
       .then((res) => res.text())
       .then((text) => {
         const list = text.split('\n').map(line => line.trim()).filter(Boolean);
-        setQuestions(list);
-        console.log(`[INFO] Загружено ${list.length} вопросов`);
+        if (isMounted) setQuestions(list);
 
-        return fetch(`http://127.0.0.1:8000/api/answer-get/${userId}/`, {
-          method: 'GET',
+        return fetch(`http://127.0.0.1:8000/api/test-status/${userId}/`, {
           headers: {
             'Authorization': `Token ${token}`,
           },
-        })
-          .then(res => res.json())
-          .then((data) => {
-            console.log('[INFO] Загружены данные ответов пользователя');
-            const firstUnanswered = list.findIndex((_, index) => data[`Вопрос ${index + 1}`] == null);
-            setCurrentIndex(firstUnanswered >= 0 ? firstUnanswered : list.length);
-            setAnswers(Object.values(data));
-          });
+        });
+      })
+      .then(async (statusRes) => {
+        if (!statusRes.ok) throw await statusRes.json();
 
+        const statusData = await statusRes.json();
+        const answeredCount = statusData.answered;
+
+        if (answeredCount === 566) {
+          localStorage.setItem('test_completed', 'true');
+          navigate('/results');
+          return;
+        }
+
+        const continueRes = await fetch(`http://127.0.0.1:8000/api/test-continue/${userId}/`, {
+          headers: {
+            'Authorization': `Token ${token}`,
+          },
+        });
+
+        if (!continueRes.ok) throw await continueRes.json();
+
+        const continueData = await continueRes.json();
+        const next = continueData.next_question_number;
+
+        if (isMounted) {
+          setCurrentIndex(next !== null ? next - 1 : 0);
+        }
       })
       .catch((error) => {
-        console.error('[ERROR] Ошибка при загрузке теста или ответов:', error);
+        console.error('[ERROR]', error);
+        showError(error);
       })
       .finally(() => {
-        setLoading(false);
+        if (isMounted) setLoading(false);
       });
 
-  }, [gender, userId, token]);
+    return () => {
+      isMounted = false;
+    };
+  }, [gender, userId, token, navigate, showError]);
 
   const handleAnswer = async (answer) => {
     if (buttonsDisabled) return;
     setButtonsDisabled(true);
 
     const questionNumber = currentIndex + 1;
-    console.log(`[ACTION] Ответ на вопрос ${questionNumber}: ${answer}`);
 
     try {
       const response = await fetch(`http://127.0.0.1:8000/api/answer-post/${userId}/`, {
@@ -87,40 +104,24 @@ const Test = () => {
         }),
       });
 
-      if (!response.ok) {
-        throw new Error(`Ошибка ответа: ${response.status}`);
-      }
-
-      const data = await response.json();
-      console.log(`[INFO] Ответ на вопрос ${questionNumber} успешно отправлен`);
-
-      const newAnswers = [...answers, answer];
-      setAnswers(newAnswers);
-      setCurrentIndex(prev => prev + 1);
-
-      localStorage.setItem('answers', JSON.stringify(newAnswers));
-      localStorage.setItem('currentIndex', currentIndex + 1);
+      if (!response.ok) throw await response.json();
 
       if (currentIndex + 1 === questions.length) {
-        console.log('[INFO] Тест завершен. Перенаправление на страницу результатов');
-        navigate('/results', { state: { answers: newAnswers } });
+        localStorage.setItem('test_completed', 'true');
+        navigate('/results');
+      } else {
+        setCurrentIndex(prev => prev + 1);
       }
     } catch (error) {
-      console.error('[ERROR] Не удалось отправить ответ:', error);
+      console.error('[ERROR]', error);
+      showError(error);
     } finally {
       setTimeout(() => setButtonsDisabled(false), 300);
     }
   };
 
-  if (loading || !gender) {
-    return <div className="test-container">Загрузка...</div>;
-  }
-
-  if (currentIndex >= questions.length) {
-    return null;
-  }
-
-  console.log(`[STATE] currentIndex = ${currentIndex}, questions.length = ${questions.length}`);
+  if (loading || !gender) return <div className="test-container">Загрузка...</div>;
+  if (currentIndex >= questions.length) return null;
 
   return (
     <div
@@ -132,7 +133,7 @@ const Test = () => {
       }}
     >
       <div className="progress-wrapper">
-      <p className='progress-text'>Прогресс</p>
+        <p className="progress-text">Прогресс</p>
         <div className="progress-bar-background">
           <div className="progress-bar-fill" style={{ width: `${(currentIndex + 1) * 1.65}px` }}></div>
           <div className="progress-bar-text">{currentIndex + 1}/{questions.length}</div>
