@@ -18,7 +18,7 @@
 }
 
 .result-header {
-  margin-right:110px;
+  margin-right:130px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,6 +27,7 @@
 
 .result-check-icon {
   width: 140px;
+  margin-right: -25px;
   height: 140px;
 }
 

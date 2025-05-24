@@ -11,13 +11,26 @@ const Home = ({ showError }) => {
   const [showHint1, setShowHint1] = useState(false);
   const [showHint2, setShowHint2] = useState(false);
   const navigate = useNavigate();
-  const openModal = () => {
+
+  const openModal = async () => {
     try {
+      const userId = localStorage.getItem('user_id');
+
+      if (userId) {
+        await fetch(`http://127.0.0.1:8000/api/answer-reset/${userId}/`, {
+          method: 'POST',
+        });
+      }
+
+      localStorage.clear()
+
       setIsModalOpen(true);
     } catch (error) {
-      showError(error);
+      showError('Произошла ошибка при сбросе теста. Попробуйте позже.');
+      console.error(error);
     }
   };
+
   const continueTest = () => {
     const userId = localStorage.getItem('user_id');
     const token = localStorage.getItem('auth_token');
@@ -28,6 +41,7 @@ const Home = ({ showError }) => {
       showError('Сначала начните тест!');
     }
   };
+
   const closeModal = () => setIsModalOpen(false);
 
   return (
@@ -57,57 +71,57 @@ const Home = ({ showError }) => {
         <h2>Инструкция по прохождению теста</h2>
         <p>
           Опросник состоит из 566 утверждений, с каждым из которых вам необходимо либо согласиться, либо нет. Оценивая каждое утверждение, не тратьте много времени на раздумья.
-Если утверждение верно по отношению к вам в одних ситуациях и неверно в других, выбирайте тот вариант ответа, который больше подходит в настоящий момент.<br /><br />
+          Если утверждение верно по отношению к вам в одних ситуациях и неверно в других, выбирайте тот вариант ответа, который больше подходит в настоящий момент.<br /><br />
 
-Обратите внимание на то, что переход к следующему утверждению осуществляется автоматически при выборе варианта ответа на текущей странице. Нажимайте на ответ только тогда, когда вы уверены в своём выборе.
-Также учтите, что возвращаться к предыдущим утверждениям нельзя. После выбора варианта ответа на последней странице произойдёт автоматический переход на страницу с результатами.<br /><br />
+          Обратите внимание на то, что переход к следующему утверждению осуществляется автоматически при выборе варианта ответа на текущей странице. Нажимайте на ответ только тогда, когда вы уверены в своём выборе.
+          Также учтите, что возвращаться к предыдущим утверждениям нельзя. После выбора варианта ответа на последней странице произойдёт автоматический переход на страницу с результатами.<br /><br />
 
-Не волнуйтесь, отвечая на достаточно интимные вопросы, ваши ответы не доступны для чтения в открытом доступе, обработка данных ведется автоматически.<br />
+          Не волнуйтесь, отвечая на достаточно интимные вопросы, ваши ответы не доступны для чтения в открытом доступе, обработка данных ведется автоматически.<br />
 
-Прохождение опросника занимает немало времени, убедитесь, что в ближайшее время вас ничего не потревожит и вы сможете дойти до конца тестирования.
+          Прохождение опросника занимает немало времени, убедитесь, что в ближайшее время вас ничего не потревожит и вы сможете дойти до конца тестирования.
         </p>
 
       </div>
 
       <div className="start">
-  <p className="time-note">Примерное время прохождения – 2 часа</p>
+        <p className="time-note">Примерное время прохождения – 2 часа</p>
 
-  <div className="button-with-hint">
-    <button className="start-btn" onClick={openModal}>
-      Начать тест
-    </button>
-    <div
-      className="hint-icon"
-      onMouseEnter={() => setShowHint1(true)}
-      onMouseLeave={() => setShowHint1(false)}
-    >
-      ?
-      {showHint1 && (
-        <div className="hint-text">
-          Прогресс будет сброшен
+        <div className="button-with-hint">
+          <button className="start-btn" onClick={openModal}>
+            Начать тест
+          </button>
+          <div
+            className="hint-icon"
+            onMouseEnter={() => setShowHint1(true)}
+            onMouseLeave={() => setShowHint1(false)}
+          >
+            ?
+            {showHint1 && (
+              <div className="hint-text">
+                Прогресс будет сброшен
+              </div>
+            )}
+          </div>
         </div>
-      )}
-    </div>
-  </div>
 
-  <div className="button-with-hint">
-  <button className="continue-test-btn" onClick={continueTest}>
-    Продолжить тестирование
-  </button>
-  <div
-    className="hint-icon"
-    onMouseEnter={() => setShowHint2(true)}
-    onMouseLeave={() => setShowHint2(false)}
-  >
-    ?
-    {showHint2 && (
-      <div className="hint-text">
-        Вы вернётесь к незавершённым вопросам или результатам тестирования
+        <div className="button-with-hint">
+          <button className="continue-test-btn" onClick={continueTest}>
+            Продолжить тестирование
+          </button>
+          <div
+            className="hint-icon"
+            onMouseEnter={() => setShowHint2(true)}
+            onMouseLeave={() => setShowHint2(false)}
+          >
+            ?
+            {showHint2 && (
+              <div className="hint-text">
+                Вы вернётесь к незавершённым вопросам или результатам тестирования
+              </div>
+            )}
+          </div>
+        </div>
       </div>
-    )}
-  </div>
-</div>
-</div>
 
       {isModalOpen && <UserDataModal onClose={closeModal} />}
     </div>

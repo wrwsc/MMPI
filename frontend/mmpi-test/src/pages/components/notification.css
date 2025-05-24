@@ -1,27 +1,32 @@
-/* styles/notification.css */
+@font-face{
+  font-family: Montserrat;
+  src: url(../fonts/Montserrat/Montserrat-VariableFont_wght.ttf);
+}
+
 .notification {
   position: fixed;
-  top: 20px;
-  right: 20px;
-  background: rgba(166, 79, 79, 0.9);
-  color: #2d2d2d;
-  padding: 10px 15px;
-  border-radius: 8px;
+  font-family: Montserrat;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(134, 30, 30, 0.848);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 0 0 8px 8px;
   z-index: 1000;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  width: auto;
+  max-width: 90%;
 }
 
 .notification-content {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 10px;
 }
 
-.notification button {
-  background: transparent;
-  border: 1px solid #fff;
-  color: #fff;
-  cursor: pointer;
-  padding: 5px 10px;
-  border-radius: 5px;
+.notification p {
+  margin: 0;
+  flex: 1;
 }
+
