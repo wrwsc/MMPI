@@ -14,21 +14,6 @@ class ApiPutUserAnswer(APIView):
     permission_classes = [IsAuthenticated]
 
     @csrf_exempt
-    @swagger_auto_schema(
-        operation_description="Обновление ответа",
-        operation_summary="Изменение ответа",
-        parameters=[
-            openapi.Parameter('user_id', openapi.IN_PATH, description="ID пользователя", type=openapi.TYPE_INTEGER),
-            openapi.Parameter('question_id', openapi.IN_PATH, description="ID вопроса", type=openapi.TYPE_INTEGER),
-            openapi.Parameter('answer', openapi.IN_PATH, description="Ответ пользователя ('Да' или 'Нет')",
-                              type=openapi.TYPE_STRING),
-        ],
-        responses={
-            200: openapi.Response('Ответ успешно обновлен'),
-            400: openapi.Response('Ошибка при обновлении ответа'),
-            404: openapi.Response('Пользователь или вопрос не найден')
-        }
-    )
     def put(self, request, user_id, question_id, answer):
         if request.user.id != user_id:
             print(request.user.id, '    ', user_id)

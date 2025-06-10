@@ -11,14 +11,6 @@ class ApiGetUserAnswers(APIView):
     permission_classes = [IsAuthenticated]
 
     @csrf_exempt
-    @swagger_auto_schema(
-        operation_description="Получение всех ответов пользователя",
-        operation_summary="Получить ответы на вопросы по ID пользователя",
-        responses={
-            200: openapi.Response('Ответы пользователя'),
-            400: openapi.Response('Ошибка: пользователь не найден')
-        }
-    )
     def get(self, request, user_id=None):
         if request.user.id != user_id:
             return Response({"message": "Вы не можете просматривать ответы другого пользователя."},

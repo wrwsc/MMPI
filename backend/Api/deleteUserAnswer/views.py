@@ -12,18 +12,6 @@ class ApiDeleteUserAnswer(APIView):
     permission_classes = [IsAuthenticated]
 
     @csrf_exempt
-    @swagger_auto_schema(
-        operation_description="Удалить ответ пользователя по ID и ID вопроса",
-        operation_summary="Удалить конкретный ответ пользователя",
-        parameters=[
-            openapi.Parameter('user_id', openapi.IN_PATH, description="ID пользователя", type=openapi.TYPE_INTEGER),
-            openapi.Parameter('question_id', openapi.IN_PATH, description="ID вопроса", type=openapi.TYPE_INTEGER),
-        ],
-        responses={
-            204: openapi.Response('Ответ удален'),
-            404: openapi.Response('Пользователь или вопрос не найден')
-        }
-    )
     def delete(self, request, user_id, question_id):
         if request.user.id != user_id:
             return Response({"message": "Вы не можете удалять ответы другого пользователя."},

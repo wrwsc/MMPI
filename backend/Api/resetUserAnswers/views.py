@@ -16,16 +16,8 @@ from rest_framework.authtoken.models import Token
 class ApiResetUserAnswers(APIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
-    # permission_classes = [AllowAny] для теста в swagger
 
     @csrf_exempt
-    @swagger_auto_schema(
-        operation_description="Сброс всех ответов и T-оценок пользователя",
-        responses={
-            200: openapi.Response("Результаты успешно сброшены"),
-            404: openapi.Response("Пользователь не найден")
-        }
-    )
     def delete(self, request, user_id):
         try:
             user = User.objects.get(user_id=user_id)

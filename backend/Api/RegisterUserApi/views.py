@@ -14,14 +14,6 @@ from django.views.decorators.csrf import csrf_exempt
 class RegisterUserApi(APIView):
     permission_classes = [AllowAny]
 
-    @swagger_auto_schema(
-        operation_description="Регистрация нового пользователя",
-        request_body=RegisterUserSerializer,
-        responses={
-            201: openapi.Response("Пользователь зарегистрирован"),
-            400: openapi.Response("Ошибка валидации")
-        }
-    )
     def post(self, request):
         serializer = RegisterUserSerializer(data=request.data)
         if serializer.is_valid():

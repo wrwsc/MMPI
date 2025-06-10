@@ -15,16 +15,8 @@ from rest_framework.permissions import IsAuthenticated
 class ApiContinueTest(APIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
-    # permission_classes = [AllowAny] для теста в swagger
 
     @csrf_exempt
-    @swagger_auto_schema(
-        operation_description="Определить, на каком вопросе остановился пользователь",
-        responses={
-            200: openapi.Response("Номер следующего вопроса"),
-            404: openapi.Response("Пользователь не найден")
-        }
-    )
     def get(self, request, user_id):
         try:
             user = User.objects.get(user_id=user_id)

@@ -7,10 +7,7 @@ from django.urls import reverse, path
 from django.utils.html import format_html
 from Dal.models import User, UserTScore
 from Dal.utils.load_questions import load_questions
-from Logic.calculate.scoring import (
-    calculate_raw_scores, apply_corrections,
-    generate_graph, generate_pdf
-)
+from Logic.calculate.scoring import generate_graph
 from Dal.models import UserAnswer
 from simple_history.models import HistoricalRecords
 

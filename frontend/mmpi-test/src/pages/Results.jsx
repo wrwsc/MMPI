@@ -35,7 +35,7 @@ const Result = () => {
           navigate('/test');
         } else {
           console.log('[INFO] Тест завершён. Загружаем график');
-          const response = await fetch(`http://127.0.0.1:8000/graph/image/${userId}/`, {
+          const response = await fetch(`http://127.0.0.1:8000/api/graph/image/${userId}/`, {
             headers: {
               'Authorization': `Token ${token}`,
             },

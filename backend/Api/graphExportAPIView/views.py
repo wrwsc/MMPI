@@ -24,16 +24,6 @@ class GraphExportAPIView(APIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
 
-    @swagger_auto_schema(
-        operation_description="Экспорт графика и результатов тестов для указанного пользователя",
-        operation_summary="Получить результаты теста в формате PDF для пользователя",
-        responses={
-            200: openapi.Response('PDF файл с результатами',
-                                  content={'application/pdf': openapi.Schema(type='string', format='binary')}),
-            403: openapi.Response('Ошибка доступа: пользователь пытается получить данные другого пользователя'),
-            404: openapi.Response('Пользователь не найден'),
-        },
-    )
     def get(self, request, user_id):
         print(f"Авторизованный пользователь: {request.user}")
         try:

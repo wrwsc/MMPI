@@ -13,18 +13,10 @@ from rest_framework.permissions import IsAuthenticated
 
 @method_decorator(csrf_exempt, name='dispatch')
 class ApiTestStatus(APIView):
-    authentication_classes = [TokenAuthentication] # для теста в swagger надо удалить это и method_decorator с csrf_exempt
+    authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
-    # permission_classes = [AllowAny] для теста в swagger
 
     @csrf_exempt
-    @swagger_auto_schema(
-        operation_description="Получить количество отвеченных вопросов пользователем",
-        responses={
-            200: openapi.Response("Количество успешно получено"),
-            404: openapi.Response("Пользователь не найден")
-        }
-    )
     def get(self, request, user_id):
         try:
             user = User.objects.get(user_id=user_id)
