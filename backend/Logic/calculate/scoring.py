@@ -2,6 +2,8 @@ import hashlib
 import json
 from Dal.models import UserAnswer
 from Dal.scaleKeys import SCALE_KEYS
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 import io
