@@ -12,9 +12,10 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.utils import ImageReader
 import os
 from django.conf import settings
-import redis
+from redis import Redis
 
-redis_client = redis.Redis(host='127.0.0.1', port=6379, db=0)
+
+redis_client = Redis(host=os.getenv("REDIS_HOST"), port=6379, db=0)
 
 
 def has_completed_all_questions(user):

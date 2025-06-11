@@ -11,9 +11,12 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 
 
+@method_decorator(csrf_exempt, name='dispatch')
 class ApiTestStatus(APIView):
-    permission_classes = [AllowAny]
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
 
+    @csrf_exempt
     @swagger_auto_schema(
         operation_description="Получить количество отвеченных вопросов пользователем",
         responses={
@@ -24,7 +27,9 @@ class ApiTestStatus(APIView):
     def get(self, request, user_id):
         try:
             user = User.objects.get(user_id=user_id)
+            print(f"Пользователь найден: {user}")
         except User.DoesNotExist:
+            print(f"Пользователь с user_id={user_id} не найден.")
             return Response({"error": "Пользователь не найден"}, status=status.HTTP_404_NOT_FOUND)
 
         user_answer = UserAnswer.objects.filter(user=user).first()
@@ -34,10 +39,13 @@ class ApiTestStatus(APIView):
                 "answered": 0
             }, status=status.HTTP_200_OK)
 
-        answered = sum(
-            1 for i in range(1, 567)
-            if getattr(user_answer, f"Вопрос {i}", None) is not None
-        )
+
+        answered = 0
+        for i in range(1, 567):
+            field_name = f"Вопрос {i}"
+            value = getattr(user_answer, field_name, None)
+            if value is not None:
+                answered += 1
 
         return Response({
             "user_id": user_id,
