@@ -9,8 +9,6 @@ from Logic.calculate.scoring import (
     apply_corrections, generate_graph, generate_pdf, has_completed_all_questions
 )
 from rest_framework.exceptions import AuthenticationFailed
-from drf_yasg.utils import swagger_auto_schema
-from drf_yasg import openapi
 from django.http import HttpResponse
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.authentication import TokenAuthentication

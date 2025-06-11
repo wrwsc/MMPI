@@ -13,8 +13,6 @@ from Logic.calculate.scoring import (
     calculate_t_scores, generate_graph, get_redis_key, redis_client
 )
 from Dal.tables.table import M_table, delta_table
-from drf_yasg.utils import swagger_auto_schema
-from drf_yasg import openapi
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 
@@ -25,16 +23,6 @@ class GraphImageAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
     @csrf_exempt
-    @swagger_auto_schema(
-        operation_description="Экспорт графика и результатов тестов для указанного пользователя",
-        operation_summary="Получить результаты теста в формате PDF для пользователя",
-        responses={
-            200: openapi.Response('PDF файл с результатами',
-                                  content={'application/pdf': openapi.Schema(type='string', format='binary')}),
-            403: openapi.Response('Ошибка доступа: пользователь пытается получить данные другого пользователя'),
-            404: openapi.Response('Пользователь не найден'),
-        },
-    )
     def get(self, request, user_id):
         try:
             print(f"Получаем пользователя с user_id={user_id}")

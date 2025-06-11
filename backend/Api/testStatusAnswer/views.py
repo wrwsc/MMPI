@@ -3,8 +3,6 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import AllowAny
 from Dal.models import User, UserAnswer
-from drf_yasg.utils import swagger_auto_schema
-from drf_yasg import openapi
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from rest_framework.authentication import TokenAuthentication
@@ -17,13 +15,6 @@ class ApiTestStatus(APIView):
     permission_classes = [IsAuthenticated]
 
     @csrf_exempt
-    @swagger_auto_schema(
-        operation_description="Получить количество отвеченных вопросов пользователем",
-        responses={
-            200: openapi.Response("Количество успешно получено"),
-            404: openapi.Response("Пользователь не найден")
-        }
-    )
     def get(self, request, user_id):
         try:
             user = User.objects.get(user_id=user_id)
