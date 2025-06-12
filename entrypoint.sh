@@ -7,7 +7,7 @@ done
 echo "Postgres доступен"
 
 python manage.py migrate --noinput
-python manage.py collectstatic --noinput
-python manage.py runserver 0.0.0.0:8000 &
+python manage.py collectstatic --noinput --verbosity 2
+gunicorn mmpi.wsgi:application --bind 0.0.0.0:8000
 echo "Запуск Nginx"
 nginx -g "daemon off;"
