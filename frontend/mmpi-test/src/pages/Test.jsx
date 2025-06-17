@@ -38,7 +38,7 @@ const Test = ({ showError }) => {
         const list = text.split('\n').map(line => line.trim()).filter(Boolean);
         if (isMounted) setQuestions(list);
 
-        return fetch(`http://127.0.0.1:8000/api/test-status/${userId}/`, {
+        return fetch(`https://mmpi.stk8s.66bit.ru/api/test-status/${userId}/`, {
           headers: {
             'Authorization': `Token ${token}`,
           },
@@ -56,7 +56,7 @@ const Test = ({ showError }) => {
           return;
         }
 
-        const continueRes = await fetch(`http://127.0.0.1:8000/api/test-continue/${userId}/`, {
+        const continueRes = await fetch(`https://mmpi.stk8s.66bit.ru/api/test-continue/${userId}/`, {
           headers: {
             'Authorization': `Token ${token}`,
           },
@@ -91,7 +91,7 @@ const Test = ({ showError }) => {
     const questionNumber = currentIndex + 1;
 
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/answer-post/${userId}/`, {
+      const response = await fetch(`https://mmpi.stk8s.66bit.ru/api/answer-post/${userId}/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

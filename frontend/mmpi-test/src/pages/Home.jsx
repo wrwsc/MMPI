@@ -17,7 +17,7 @@ const Home = ({ showError }) => {
       const userId = localStorage.getItem('user_id');
 
       if (userId) {
-        await fetch(`http://127.0.0.1:8000/api/answer-reset/${userId}/`, {
+        await fetch(`https://mmpi.stk8s.66bit.ru/api/answer-reset/${userId}/`, {
           method: 'POST',
         });
       }
