@@ -116,7 +116,7 @@ const Test = ({ showError }) => {
       console.error('[ERROR]', error);
       showError(error);
     } finally {
-      setTimeout(() => setButtonsDisabled(false), 300);
+      setTimeout(() => setButtonsDisabled(false), 30);
     }
   };
 
