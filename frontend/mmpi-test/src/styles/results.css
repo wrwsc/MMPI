@@ -157,3 +157,46 @@
   font-size: 20px;
   text-align: center;
 }
+
+@media (max-width: 768px) {
+  html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+  .result-container {
+    padding: 20px 10px;
+  }
+
+  .result-header {
+    flex-direction: column;
+    margin-right: 0;
+  }
+
+  .result-check-icon {
+    width: 80px;
+    height: 80px;
+  }
+
+  .result-title {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .result-btn {
+    font-size: 15px;
+    padding: 14px 18px;
+  }
+
+  .result-graph {
+    margin-left: 0;
+  }
+
+  .round-scale-image {
+    width: 80px;
+  }
+
+  .result-footer {
+    font-size: 16px;
+  }
+}
