@@ -34,7 +34,6 @@ const Result = () => {
         if (data.answered < 566) {
           navigate('/test');
         } else {
-          console.log('[INFO] Тест завершён. Загружаем график');
           const response = await fetch(`https://mmpi.stk8s.66bit.ru/api/graph/image/${userId}/`, {
             headers: {
               'Authorization': `Token ${token}`,

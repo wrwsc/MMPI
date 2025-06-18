@@ -76,7 +76,7 @@ const UserDataModal = ({ onClose }) => {
       if (response.ok) {
   const data = await response.json();
   
-  console.log('Регистрация успешна:', data);
+
 
   localStorage.setItem('user_id', data.user_id);
 localStorage.setItem('auth_token', data.token);
@@ -101,7 +101,7 @@ setTimeout(() => {
   const handleClose = () => {
     setIsClosing(true);
     setTimeout(() => {
-      onClose(); // Закрываем после завершения анимации
+      onClose();
     }, 200);
   };
 
@@ -116,9 +116,9 @@ setTimeout(() => {
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  });
 
-  const getBackgroundStyle = () => {
+  function getBackgroundStyle() {
     if (selectedGender === 'Женский') {
       return { background: 'rgba(187, 160, 153, 0.55)', backdropFilter: 'blur(10px)' };
     }
@@ -126,7 +126,7 @@ setTimeout(() => {
       return { background: 'rgba(153, 165, 187, 0.55)', backdropFilter: 'blur(10px)' };
     }
     return { background: 'rgba(157, 149, 146, 0.55)', backdropFilter: 'blur(10px)' };
-  };
+  }
 
   return (
     <div className="modal-container">

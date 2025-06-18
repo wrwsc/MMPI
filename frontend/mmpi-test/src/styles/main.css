@@ -27,6 +27,7 @@
 
 .title-wrapper {
   width: 100%;
+  height: auto;
   text-align: left;
 }
 
@@ -39,6 +40,8 @@
 
 .content-wrapper {
   display: flex;
+  width: 100%;
+  height: 100%;
   justify-content: flex-end;
   margin-top: -15em;
   flex: 1;
@@ -47,6 +50,7 @@
 
 .description-box, .instructions {
   max-width: 800px;
+  width: 800px;
   padding: 2rem;
   margin-bottom: 2rem;
   background-color: rgba(55, 55, 55, 0.475);
@@ -58,10 +62,10 @@
   text-shadow: 2px 2px 20px rgb(17, 17, 17) ;
 }
 
-
 .description-box {
   max-width: 680px;
   padding-left: 2rem;
+  height: auto;
   text-align: justify;
 }
 
@@ -75,8 +79,9 @@
 }
 
 .instructions {
-  width: 100%;
-  max-width: 1000px;
+
+  min-width: 1000px;
+  height: auto;
   margin: 0 auto;
   text-align: left;
   margin-top: 3rem;
@@ -92,11 +97,8 @@
 
 .instructions p {
   margin-bottom: 1rem;
-}
-
-
-.start{
-  text-align: center;
+  height: auto;
+  width: auto;
 }
 
 .time-note {
@@ -106,18 +108,6 @@
   text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);   
 }
 
-/* .start-btn {
-  margin-top: 1rem;
-  padding: 0.8rem 2rem;
-  background-color: white;
-  color: #39546e;  border: none;
-  width: 23em;
-  border-radius: 70px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s;
-} */
-
 .start-btn:hover {
   background-color: #d0d0d0;
 }
@@ -125,12 +115,17 @@
 .start-btn:focus {
   outline: none;
 }
+
 .start-btn:active {
   outline: none;
 }
+
 .start {
   text-align: center;
   display: flex;
+  width: 500px;
+  height: 165px;
+  margin: 0 auto;
   flex-direction: column;
   align-items: center;
 }
@@ -138,6 +133,8 @@
 .button-with-hint {
   position: relative;
   display: flex;
+  width: 100%;
+  height: 100%;
   align-items: center;
   justify-content: center;
   margin: 10px 0;
