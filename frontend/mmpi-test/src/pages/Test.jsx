@@ -26,6 +26,13 @@ const Test = ({ showError }) => {
   }, []);
 
   useEffect(() => {
+    const completed = localStorage.getItem('test_completed');
+    if (completed === 'true') {
+      navigate('/');
+    }
+  }, [navigate]);
+
+  useEffect(() => {
     if (!gender || !userId || !token) return;
 
     let isMounted = true;

@@ -83,6 +83,12 @@ const Result = () => {
 
   return (
     <div className="result-container">
+      <div className="go-home-button-wrapper">
+        <button className="go-home-button" onClick={() => navigate('/')}>
+          На главную
+        </button>
+      </div>
+
       <div className="result-header">
         <img src={CheckIcon} alt="Успех" className="result-check-icon" />
         <h1 className="result-title">
